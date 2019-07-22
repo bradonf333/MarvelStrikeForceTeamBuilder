@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseCharacterService } from '../services/base-character-service/base-character.service';
 
 @Component({
   selector: 'app-nav-bar',
@@ -6,10 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+  constructor(private baseCharService: BaseCharacterService) {}
 
-  constructor() { }
+  ngOnInit() {}
 
-  ngOnInit() {
+  seedCharacters() {
+    // this.baseCharService.add();
   }
-
 }

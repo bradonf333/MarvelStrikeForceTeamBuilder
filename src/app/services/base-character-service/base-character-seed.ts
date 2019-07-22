@@ -1,3 +1,4 @@
+import { Trait } from 'src/app/models/entities/Trait';
 import { RedRank } from 'src/app/models/ranks/RedRank';
 import { YellowRank } from 'src/app/models/ranks/YellowRank';
 
@@ -6,6 +7,14 @@ const redRank = Object.assign({}, new RedRank(0, yellowRank));
 
 export const BaseIronFist = {
   name: 'Iron Fist',
+  traits: [
+    Trait.Hero,
+    Trait.City,
+    Trait.MartialArtist,
+    Trait.Brawler,
+    Trait.Defender,
+    Trait.Mystic
+  ],
   abilities: [
     {
       type: 'Basic',
@@ -45,6 +54,7 @@ export const BaseIronFist = {
 
 export const BaseJessicaJones = {
   name: 'Jessica Jones',
+  traits: [Trait.Hero, Trait.City, Trait.Bio, Trait.Controller, Trait.Defender],
   abilities: [
     {
       type: 'Basic',
@@ -83,6 +93,14 @@ export const BaseJessicaJones = {
 
 export const BaseDareDevil = {
   name: 'DareDevil',
+  traits: [
+    Trait.Hero,
+    Trait.City,
+    Trait.Bio,
+    Trait.Brawler,
+    Trait.Defender,
+    Trait.MartialArtist
+  ],
   abilities: [
     {
       type: 'Basic',
@@ -121,6 +139,7 @@ export const BaseDareDevil = {
 
 export const BaseLukeCage = {
   name: 'Luke Cage',
+  traits: [Trait.Hero, Trait.City, Trait.Bio, Trait.Protector, Trait.Defender],
   abilities: [
     {
       type: 'Basic',
@@ -159,6 +178,7 @@ export const BaseLukeCage = {
 
 export const BaseRonan = {
   name: 'Ronan the Accuser',
+  traits: [Trait.Villain, Trait.Cosmic, Trait.Mystic, Trait.Controller, Trait.Kree],
   abilities: [
     {
       type: 'Basic',
@@ -197,6 +217,14 @@ export const BaseRonan = {
 
 export const BaseReaper = {
   name: 'Kree Reaper',
+  traits: [
+    Trait.Villain,
+    Trait.Cosmic,
+    Trait.Bio,
+    Trait.Brawler,
+    Trait.Kree,
+    Trait.Minion
+  ],
   abilities: [
     {
       type: 'Basic',
@@ -228,6 +256,14 @@ export const BaseReaper = {
 
 export const BaseOracle = {
   name: 'Kree Oracle',
+  traits: [
+    Trait.Villain,
+    Trait.Cosmic,
+    Trait.Tech,
+    Trait.Support,
+    Trait.Kree,
+    Trait.Minion
+  ],
   abilities: [
     {
       type: 'Basic',
@@ -259,6 +295,14 @@ export const BaseOracle = {
 
 export const BaseNoble = {
   name: 'Kree Noble',
+  traits: [
+    Trait.Villain,
+    Trait.Cosmic,
+    Trait.Bio,
+    Trait.Controller,
+    Trait.Kree,
+    Trait.Minion
+  ],
   abilities: [
     {
       type: 'Basic',
@@ -290,6 +334,14 @@ export const BaseNoble = {
 
 export const BaseRoyalGuard = {
   name: 'Kree Royal Guard',
+  traits: [
+    Trait.Villain,
+    Trait.Cosmic,
+    Trait.Bio,
+    Trait.Protector,
+    Trait.Kree,
+    Trait.Minion
+  ],
   abilities: [
     {
       type: 'Basic',
@@ -321,6 +373,7 @@ export const BaseRoyalGuard = {
 
 export const BaseSpiderMan = {
   name: 'Spider-Man',
+  traits: [Trait.Hero, Trait.City, Trait.Bio, Trait.Brawler, Trait.SpiderVerse],
   abilities: [
     {
       type: 'Basic',
