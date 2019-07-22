@@ -1,0 +1,16 @@
+<div class='container'>
+  <mdb-card *ngFor='let char of characterList'>
+    <mdb-card-header>{{char.name}}</mdb-card-header>
+    <mdb-card-body>
+      <mdb-card-title>
+        <h6>Abilities</h6>
+      </mdb-card-title>
+      <mdb-card-text>
+        <div *ngFor='let ability of char["abilities"]'>
+          {{ability.type}}: {{ability.name}}
+        </div>
+      </mdb-card-text>
+      <a href="" mdbBtn color="primary">Go somewhere!</a>
+    </mdb-card-body>
+  </mdb-card>
+</div>
