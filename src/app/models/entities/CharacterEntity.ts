@@ -10,5 +10,3 @@ export class CharacterEntity extends BaseEntity {
   yellowStars: YellowRank;
   redStars: RedRank;
 }
-
-

@@ -1,8 +1,7 @@
-import { AbilityType } from './AbilityType';
 export class Ability {
   description: string;
   level: number;
   maxLevel: number;
-  type: AbilityType;
+  type: string; // TODO: Front-End needs to give available Types.
   name: string;
 }

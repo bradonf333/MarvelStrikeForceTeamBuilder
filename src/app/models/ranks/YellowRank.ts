@@ -13,5 +13,8 @@ export class YellowRank {
 
   calculateShardsToRankUp() {
     this.shardsToRankUp = this.currentRank * this.baseShardsForRank - this.currentShards;
+    if (this.shardsToRankUp <= 0) {
+      this.shardsToRankUp = this.baseShardsForRank;
+    }
   }
 }
