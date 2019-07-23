@@ -7,7 +7,11 @@
       </mdb-card-title>
       <mdb-card-text>
         <div *ngFor='let ability of char["abilities"]'>
-          {{ability.type}}: {{ability.name}}
+          <b class='label'>{{ability.type}}:</b> {{ability.name}}
+        </div>
+        <h6>Traits</h6>
+        <div *ngFor='let trait of char["traits"]'>
+          {{trait}}
         </div>
       </mdb-card-text>
       <a href="" mdbBtn color="primary">Go somewhere!</a>
