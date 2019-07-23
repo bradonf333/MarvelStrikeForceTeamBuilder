@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { CharacterEntity } from '../models/entities/CharacterEntity';
 import { CharacterService } from '../services/character.service';
 
@@ -8,15 +9,10 @@ import { CharacterService } from '../services/character.service';
   styleUrls: ['./view-characters.component.scss']
 })
 export class ViewCharactersComponent implements OnInit {
-  totalCount = 0;
-  characterList: CharacterEntity[];
-  // chars$: Observable<CharacterEntity[]>;
-  constructor(private charService: CharacterService) {
-    charService.list().subscribe(data => {
-      this.totalCount = data.length;
-      this.characterList = data;
-    });
-    // this.chars$ = this.charService.list();
+  characters$: Observable<CharacterEntity[]>;
+
+  constructor(private characterService: CharacterService) {
+    this.characters$ = characterService.list();
   }
 
   ngOnInit() {}

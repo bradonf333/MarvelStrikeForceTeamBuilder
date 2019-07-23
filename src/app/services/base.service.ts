@@ -36,6 +36,7 @@ export abstract class BaseService<T extends IBaseEntity> implements IBaseService
         return changes.map(a => {
           const data = a.payload.doc.data();
           data.id = a.payload.doc.id;
+          console.log(data);
           return data;
         });
       })

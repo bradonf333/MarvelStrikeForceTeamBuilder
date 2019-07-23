@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { BaseCharacters } from '../services/base-character-service/base-character-seed';
 import { BaseCharacterService } from '../services/base-character-service/base-character.service';
 
 @Component({
@@ -7,11 +8,14 @@ import { BaseCharacterService } from '../services/base-character-service/base-ch
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+  baseCharacters = new BaseCharacters();
   constructor(private baseCharService: BaseCharacterService) {}
 
   ngOnInit() {}
 
   seedCharacters() {
-    // this.baseCharService.add();
+    this.baseCharService.add(
+      this.baseCharacters.baseCharacters.find(x => x.name === 'Punisher')
+    );
   }
 }

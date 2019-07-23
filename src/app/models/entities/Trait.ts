@@ -14,5 +14,7 @@ export enum Trait {
   Cosmic = 'Cosmic',
   Support = 'Support',
   Tech = 'Tech',
-  Minion = 'Minion'
+  Minion = 'Minion',
+  Skill = 'Skill',
+  Blaster = 'Blaster'
 }

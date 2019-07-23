@@ -1,3 +1,4 @@
+import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
 import { Trait } from 'src/app/models/entities/Trait';
 import { RedRank } from 'src/app/models/ranks/RedRank';
 import { YellowRank } from 'src/app/models/ranks/YellowRank';
@@ -5,7 +6,23 @@ import { YellowRank } from 'src/app/models/ranks/YellowRank';
 const yellowRank = Object.assign({}, new YellowRank(0, 0));
 const redRank = Object.assign({}, new RedRank(0, yellowRank));
 
-export const BaseIronFist = {
+export class BaseCharacters {
+  baseCharacters: CharacterEntity[] = [
+    BaseIronFist,
+    BaseDareDevil,
+    BaseJessicaJones,
+    BaseLukeCage,
+    BaseSpiderMan,
+    BaseRonan,
+    BaseNoble,
+    BaseOracle,
+    BaseReaper,
+    BaseRoyalGuard,
+    BasePunisher
+  ];
+}
+
+export const BaseIronFist: CharacterEntity = {
   name: 'Iron Fist',
   traits: [
     Trait.Hero,
@@ -410,40 +427,41 @@ export const BaseSpiderMan = {
   redStars: redRank
 };
 
-// export const BaseSpiderMan = {
-//   name: 'Jessica Jones',
-//   abilities: [
-//     {
-//       type: 'Basic',
-//       name: 'Jaw Breaker',
-//       description: 'DescriptionPlaceHolder',
-//       level: 1,
-//       maxLevel: 7
-//     },
-//     {
-//       type: 'Special',
-//       name: 'Shake It Off',
-//       description: 'DescriptionPlaceHolder',
-//       level: 1,
-//       maxLevel: 7
-//     },
-//     {
-//       type: 'Ultimate',
-//       name: 'Rejection',
-//       description: 'DescriptionPlaceHolder',
-//       level: 1,
-//       maxLevel: 7
-//     },
-//     {
-//       type: 'Passive',
-//       name: 'Denial',
-//       description: 'DescriptionPlaceHolder',
-//       level: 1,
-//       maxLevel: 5
-//     }
-//   ],
-//   level: 0,
-//   power: 0,
-//   yellowStars: yellowRank,
-//   redStars: redRank
-// };
+export const BasePunisher = {
+  name: 'Punisher',
+  traits: [Trait.Hero, Trait.City, Trait.Skill, Trait.Blaster],
+  abilities: [
+    {
+      type: 'Basic',
+      name: 'M4 Carbine',
+      description: 'DescriptionPlaceHolder',
+      level: 1,
+      maxLevel: 7
+    },
+    {
+      type: 'Special',
+      name: 'Grenade Launcher',
+      description: 'DescriptionPlaceHolder',
+      level: 1,
+      maxLevel: 7
+    },
+    {
+      type: 'Ultimate',
+      name: 'Fully Loaded',
+      description: 'DescriptionPlaceHolder',
+      level: 1,
+      maxLevel: 7
+    },
+    {
+      type: 'Passive',
+      name: 'Lock and Load',
+      description: 'DescriptionPlaceHolder',
+      level: 1,
+      maxLevel: 5
+    }
+  ],
+  level: 0,
+  power: 0,
+  yellowStars: yellowRank,
+  redStars: redRank
+};
