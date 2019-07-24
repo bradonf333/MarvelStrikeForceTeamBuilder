@@ -16,16 +16,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit() {
     this.registerForm = new FormGroup({
-      email: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(50)
-      ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(2),
-        Validators.maxLength(50)
-      ])
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(8)])
     });
   }
 
@@ -55,11 +47,9 @@ export class LoginComponent implements OnInit {
   disableButton() {
     if (
       this.email.hasError('required') ||
-      this.email.hasError('minLength') ||
-      this.email.hasError('maxLength') ||
+      this.email.hasError('email') ||
       this.password.hasError('required') ||
-      this.password.hasError('minLength') ||
-      this.password.hasError('maxLength')
+      this.password.hasError('minlength')
     ) {
       return true;
     } else {
@@ -71,9 +61,9 @@ export class LoginComponent implements OnInit {
   getErrorMessage(validator: FormControl) {
     if (validator.hasError('required')) {
       return 'You must enter a value';
-    } else if (validator.hasError('maxlength')) {
-      return 'You have exceeded the Max Length';
-    } else if (validator.hasError('minLength') || validator.hasError('minLength')) {
+    } else if (validator.hasError('email')) {
+      return 'You must enter a valid email';
+    } else if (validator.hasError('minlength')) {
       return 'You have not met the Minimum Length';
     } else {
       return '';

@@ -2,22 +2,26 @@
   <!-- Default form login -->
   <form class="text-center border border-light p-5" [formGroup]="registerForm">
 
-    <div class="md-form">
-      <input mdbInput mdbValidate type="text" id="email" class="form-control" formControlName="email">
-      <label for="email">Email</label>
-      <p>
-        <mdb-error *ngIf="email.invalid && (email.dirty || email.touched)">{{getErrorMessage(email)}}</mdb-error>
-        <mdb-success *ngIf="email.valid && (email.dirty || email.touched)">Input valid</mdb-success>
-    </div>
+    <p class="h4 mb-4">Sign in</p>
+
+    <!-- Email -->
+    <input type="email" formControlName="email" id="loginFormEmail" class="form-control mb-4" placeholder="E-mail">
+    <p class='error' *ngIf='email.invalid && (email.dirty || email.touched)'>{{getErrorMessage(email)}}</p>
+
+    <!-- Password -->
+    <input type="password" formControlName="password" id="loginFormPassword" class="form-control mb-4"
+      placeholder="Password">
+    <p class='error' *ngIf='password.invalid && (password.dirty || password.touched)'>{{getErrorMessage(password)}}
+    </p>
 
     <!-- Sign in button -->
     <button mdbBtn color="info" block="true" class="my-4" type="submit" [disabled]="disableButton()"
       (click)="authService.login(email.value, password.value)">Sign in</button>
 
     <!-- Register -->
-    <!-- <p>Not a member?
+    <p>Not a member?
       <a href="">Register</a>
-    </p> -->
+    </p>
 
     <!-- Social login -->
     <p>or sign in with:</p>
@@ -26,7 +30,7 @@
       <mdb-icon fab icon="facebook"></mdb-icon>
     </a> -->
     <a mdbBtn floating="true" size="lg">
-      <mdb-icon fab icon="google" size="2x" click='googleLogin()'></mdb-icon>
+      <mdb-icon fab icon="google" size="2x" click='authService.googleLogin()'></mdb-icon>
     </a>
     <!-- <a type="button" class="light-blue-text mx-2">
       <mdb-icon fab icon="linkedin"></mdb-icon>
