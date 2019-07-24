@@ -1,4 +1,5 @@
 export const config = {
   base_character_collection: 'base-characters',
-  character_collection: 'characters'
+  character_collection: 'characters',
+  user_collection: 'users'
 };

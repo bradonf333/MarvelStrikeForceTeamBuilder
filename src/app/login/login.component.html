@@ -2,6 +2,16 @@
   <!-- Default form login -->
   <form class="text-center border border-light p-5" [formGroup]="registerForm">
 
+    <div *ngIf="authService.user$ | async as user; else login">
+      <pre>{{ user | json }}</pre>
+    </div>
+
+    <ng-template #login>
+      <a mdbBtn floating="true" size="lg">
+        <mdb-icon fab icon="google" size="2x" (click)="authService.googleLogin()"></mdb-icon>
+      </a>
+    </ng-template>
+
     <p class="h4 mb-4">Sign in</p>
 
     <!-- Email -->

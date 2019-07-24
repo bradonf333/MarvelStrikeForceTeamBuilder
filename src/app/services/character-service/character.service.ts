@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { config } from '../app.config';
-import { CharacterEntity } from '../models/entities/CharacterEntity';
-import { BaseService } from './base.service';
+import { config } from '../../app.config';
+import { CharacterEntity } from '../../models/entities/CharacterEntity';
+import { BaseService } from '../base-service/base.service';
 
 @Injectable({
   providedIn: 'root'

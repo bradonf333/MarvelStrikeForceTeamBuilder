@@ -1,7 +1,9 @@
-export interface User {
+import { BaseEntity } from './BaseEntity';
+
+export interface User extends BaseEntity {
   uid: string;
   email: string;
-  photoUrl?: string;
+  photoURL?: string;
   displayName?: string;
   somethingCustom?: string;
 }
