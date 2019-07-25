@@ -10,37 +10,22 @@ import { AuthService } from '../services/AuthService/auth.service';
 export class LoginComponent implements OnInit {
   errorMessage: string;
   successMessage: string;
-  registerForm: FormGroup;
+  loginForm: FormGroup;
 
   constructor(public authService: AuthService) {}
 
   ngOnInit() {
-    this.registerForm = new FormGroup({
+    this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(8)])
     });
   }
 
-  tryRegister(value) {
-    this.authService.register(value).then(
-      res => {
-        console.log(res);
-        this.errorMessage = '';
-        this.successMessage = 'Your account has been created';
-      },
-      err => {
-        console.log(err);
-        this.errorMessage = err.message;
-        this.successMessage = '';
-      }
-    );
-  }
-
   get email() {
-    return this.registerForm.get('email');
+    return this.loginForm.get('email');
   }
   get password() {
-    return this.registerForm.get('password');
+    return this.loginForm.get('password');
   }
 
   /** If any validation Errors then Disable the Submit Button */

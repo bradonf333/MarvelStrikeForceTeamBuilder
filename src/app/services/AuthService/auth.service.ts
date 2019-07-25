@@ -4,8 +4,7 @@ import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 // import { User } from 'firebase/app';
-import { Observable, of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { User } from '../../models/entities/User';
 import { UserService } from '../user-service/user.service';
 
@@ -13,7 +12,8 @@ import { UserService } from '../user-service/user.service';
   providedIn: 'root'
 })
 export class AuthService {
-  // user: User;
+  user: User;
+  xyUser: User;
   user$: Observable<User>;
 
   constructor(
@@ -21,23 +21,32 @@ export class AuthService {
     public router: Router,
     private userService: UserService
   ) {
-    this.afAuth.authState.pipe(
-      switchMap(user => {
-        if (user) {
-          return this.userService.get(user.uid).valueChanges();
-        } else {
-          return of(null);
-        }
-      })
-    );
-    // this.afAuth.authState.subscribe(user => {
-    //   if (user) {
-    //     this.user = user;
-    //     localStorage.setItem('user', JSON.stringify(this.user));
-    //   } else {
-    //     localStorage.setItem('user', null);
-    //   }
-    // });
+    // this.user$ = this.afAuth.authState.pipe(
+    //   switchMap(user => {
+    //     if (user) {
+    //       // localStorage.setItem('user', JSON.stringify(user));
+    //       return this.userService.get(user.uid).valueChanges();
+    //     } else {
+    //       return of(null);
+    //     }
+    //   })
+    // );
+    this.afAuth.authState.subscribe(user => {
+      if (user) {
+        this.user = user;
+        const x = this.userService.get(this.user.uid).valueChanges();
+        x.subscribe(xy => {
+          this.xyUser = xy;
+          console.log('here: ', xy);
+        });
+        console.log('This.User: ', this.user);
+        console.log('X User: ', x);
+        localStorage.setItem('user', JSON.stringify(this.user));
+        localStorage.setItem('xyUser', JSON.stringify(this.xyUser));
+      } else {
+        localStorage.setItem('user', null);
+      }
+    });
   }
 
   get isLoggedIn(): boolean {
@@ -45,13 +54,9 @@ export class AuthService {
     return user !== null;
   }
 
-  async login(email: string, password: string) {
-    try {
-      await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      this.router.navigate(['/']);
-    } catch (e) {
-      alert('Error!' + e.message);
-    }
+  async emailLogin(email: string, password: string) {
+    const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    this.router.navigate(['/']);
   }
 
   async logout() {

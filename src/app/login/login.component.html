@@ -1,8 +1,8 @@
 <div class='container'>
   <!-- Default form login -->
-  <form class="text-center border border-light p-5" [formGroup]="registerForm">
+  <form class="text-center border border-light p-5" [formGroup]="loginForm">
 
-    <div *ngIf="authService.user$ | async as user; else login">
+    <!-- <div *ngIf="authService.user$ | async as user; else login">
       <pre>{{ user | json }}</pre>
     </div>
 
@@ -10,7 +10,7 @@
       <a mdbBtn floating="true" size="lg">
         <mdb-icon fab icon="google" size="2x" (click)="authService.googleLogin()"></mdb-icon>
       </a>
-    </ng-template>
+    </ng-template> -->
 
     <p class="h4 mb-4">Sign in</p>
 
@@ -26,7 +26,7 @@
 
     <!-- Sign in button -->
     <button mdbBtn color="info" block="true" class="my-4" type="submit" [disabled]="disableButton()"
-      (click)="authService.login(email.value, password.value)">Sign in</button>
+      (click)="authService.emailLogin(email.value, password.value)">Sign in</button>
 
     <!-- Register -->
     <p>Not a member?

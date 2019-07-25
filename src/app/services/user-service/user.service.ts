@@ -19,7 +19,7 @@ export class UserService {
   }
 
   get(id: string): AngularFirestoreDocument<User> {
-    console.log('[BaseService] get: ', id);
+    console.log('[UserService] get: ', id);
     return this.collection.doc<User>(id);
   }
 }
