@@ -1,0 +1,15 @@
+@import "node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss";
+
+// Example usage:
+@include media-breakpoint-up(sm) {
+  .container {
+    max-width: 25%;
+  }
+}
+
+p.error {
+  color: red;
+  font-size: 10pt;
+  margin-top: -20px;
+  margin-bottom: 20px;
+}

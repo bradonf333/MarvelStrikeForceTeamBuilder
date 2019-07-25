@@ -48,7 +48,7 @@ export class AuthService {
   async login(email: string, password: string) {
     try {
       await this.afAuth.auth.signInWithEmailAndPassword(email, password);
-      // this.router.navigate(['admin/list']);
+      this.router.navigate(['/']);
     } catch (e) {
       alert('Error!' + e.message);
     }
@@ -79,14 +79,15 @@ export class AuthService {
     return userRef.set(data, { merge: true });
   }
 
-  register(value) {
+  register(email: string, password: string) {
     return new Promise<any>((resolve, reject) => {
       firebase
         .auth()
-        .createUserWithEmailAndPassword(value.email, value.password)
+        .createUserWithEmailAndPassword(email, password)
         .then(
           res => {
             resolve(res);
+            this.router.navigate(['/']);
           },
           err => reject(err)
         );
