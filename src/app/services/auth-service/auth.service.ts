@@ -4,7 +4,8 @@ import { AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
 import * as firebase from 'firebase/app';
 // import { User } from 'firebase/app';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 import { User } from '../../models/entities/User';
 import { UserService } from '../user-service/user.service';
 
@@ -21,41 +22,35 @@ export class AuthService {
     public router: Router,
     private userService: UserService
   ) {
-    // this.user$ = this.afAuth.authState.pipe(
-    //   switchMap(user => {
-    //     if (user) {
-    //       // localStorage.setItem('user', JSON.stringify(user));
-    //       return this.userService.get(user.uid).valueChanges();
-    //     } else {
-    //       return of(null);
-    //     }
-    //   })
-    // );
-    this.afAuth.authState.subscribe(user => {
-      if (user) {
-        this.user = user;
-        const x = this.userService.get(this.user.uid).valueChanges();
-        x.subscribe(xy => {
-          this.xyUser = xy;
-          console.log('here: ', xy);
-        });
-        console.log('This.User: ', this.user);
-        console.log('X User: ', x);
-        localStorage.setItem('user', JSON.stringify(this.user));
-        localStorage.setItem('xyUser', JSON.stringify(this.xyUser));
-      } else {
-        localStorage.setItem('user', null);
-      }
-    });
+    this.user$ = this.afAuth.authState.pipe(
+      switchMap(user => {
+        if (user) {
+          // localStorage.setItem('user', JSON.stringify(user));
+          // logged in, get custom user from Firestore
+          console.log(user);
+          return this.userService.get(user.uid).valueChanges();
+        } else {
+          console.log('User not signed in');
+          // logged out, null
+          return of(null);
+        }
+      })
+    );
   }
 
   get isLoggedIn(): boolean {
-    const user = JSON.parse(localStorage.getItem('user'));
-    return user !== null;
+    // let isLoggedIn = false;
+
+    return true;
   }
 
   async emailLogin(email: string, password: string) {
     const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
+    if (Boolean(result)) {
+      this.user$ = this.userService.get(result.user.uid).valueChanges();
+    } else {
+      console.log('Fail');
+    }
     this.router.navigate(['/']);
   }
 

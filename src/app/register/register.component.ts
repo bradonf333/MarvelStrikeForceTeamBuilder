@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/AuthService/auth.service';
+import { AuthService } from '../services/auth-service/auth.service';
 import { ConfirmPasswordValidator } from './ConfirmPasswordValidator';
 
 @Component({
@@ -17,7 +17,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
-        password: ['', [Validators.required, Validators.minLength(8)]],
+        password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required]]
       },
       { validator: ConfirmPasswordValidator.MatchPassword }
@@ -53,9 +53,9 @@ export class RegisterComponent implements OnInit {
   /** Get FormControl Error Messages */
   getErrorMessage(validator: FormControl) {
     if (validator.hasError('required')) {
-      return 'You must enter a value';
+      return 'This field is required';
     } else if (validator.hasError('email')) {
-      return 'You must enter a valid email';
+      return 'Your email doesn\'t look quite right...';
     } else if (validator.hasError('minlength')) {
       return 'You have not met the Minimum Length';
     } else if (validator.hasError('confirmPassword')) {

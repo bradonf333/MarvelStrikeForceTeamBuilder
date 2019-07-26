@@ -1,0 +1,6 @@
+  <div *ngIf="user">
+    <pre>{{user | json}}</pre>
+    <img src={{user.photoURL}} alt="">
+  </div>
+
+  <button mdbBtn color="info" block="true" class="my-4" (click)="authService.logout()">Log out</button>

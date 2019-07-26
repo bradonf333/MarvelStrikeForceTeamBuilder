@@ -10,7 +10,7 @@
     <!-- Links -->
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link waves-light" mdbWavesEffect>Home<span class="sr-only"></span></a>
+        <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/welcome']">Home<span class="sr-only"></span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link waves-light" mdbWavesEffect [routerLink]="['/create-character']">Create Character</a>
@@ -39,14 +39,18 @@
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item avatar dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          <img *ngIf="authService.isLoggedIn" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1.jpg" alt=""
-            class="img-fluid rounded-circle z-depth-0"></a>
+          <!-- <img *ngIf="authService.user | async as user" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1.jpg"
+            alt="" class="img-fluid rounded-circle z-depth-0">-->
+        </a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">My account</a>
-          <a *ngIf="authService.isLoggedIn" class="dropdown-item waves-light" mdbWavesEffect
-            (click)="authService.logout()">Log out</a>
-          <a *ngIf="!authService.isLoggedIn" class="dropdown-item waves-light" mdbWavesEffect
-            [routerLink]="['/login']">Log in</a>
+          <a *ngIf="authService.user$ | async as user else login">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/my-account']">My account
+            </a>
+            <a class="dropdown-item waves-light" mdbWavesEffect (click)="authService.logout()">Log out</a>
+          </a>
+          <ng-template #login>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/login']">Log in</a>
+          </ng-template>
         </div>
       </li>
     </ul>
