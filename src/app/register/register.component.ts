@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { User } from '../models/entities/User';
 import { AuthService } from '../services/auth-service/auth.service';
 import { ConfirmPasswordValidator } from './ConfirmPasswordValidator';
 
@@ -10,6 +11,7 @@ import { ConfirmPasswordValidator } from './ConfirmPasswordValidator';
 })
 export class RegisterComponent implements OnInit {
   registerForm: FormGroup;
+  newUser: User;
 
   constructor(public authService: AuthService, private fb: FormBuilder) {}
 
@@ -17,6 +19,7 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.fb.group(
       {
         email: ['', [Validators.required, Validators.email]],
+        userName: ['', [Validators.minLength(2), Validators.maxLength(30)]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         confirmPassword: ['', [Validators.required]]
       },
@@ -26,6 +29,9 @@ export class RegisterComponent implements OnInit {
 
   get email() {
     return this.registerForm.get('email');
+  }
+  get userName() {
+    return this.registerForm.get('userName');
   }
   get password() {
     return this.registerForm.get('password');
@@ -39,6 +45,8 @@ export class RegisterComponent implements OnInit {
     if (
       this.email.hasError('required') ||
       this.email.hasError('email') ||
+      this.userName.hasError('minlength') ||
+      this.userName.hasError('maxlength') ||
       this.password.hasError('required') ||
       this.password.hasError('minlength') ||
       this.confirmPassword.hasError('required') ||
@@ -58,6 +66,8 @@ export class RegisterComponent implements OnInit {
       return 'Your email doesn\'t look quite right...';
     } else if (validator.hasError('minlength')) {
       return 'You have not met the Minimum Length';
+    } else if (validator.hasError('maxlength')) {
+      return 'You have passed the Maximum Length';
     } else if (validator.hasError('confirmPassword')) {
       return 'Passwords must match';
     } else {

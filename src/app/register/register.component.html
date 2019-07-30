@@ -8,6 +8,11 @@
     <input type="email" formControlName="email" id="loginFormEmail" class="form-control mb-4" placeholder="E-mail">
     <p class='error' *ngIf='email.invalid && (email.dirty || email.touched)'>{{getErrorMessage(email)}}</p>
 
+    <!-- Username -->
+    <input type="input" formControlName="userName" id="loginFormUserName" class="form-control mb-4"
+      placeholder="UserName">
+    <p class='error' *ngIf='userName.invalid && (userName.dirty || userName.touched)'>{{getErrorMessage(userName)}}</p>
+
     <!-- Password -->
     <input type="password" formControlName="password" id="loginFormPassword" class="form-control mb-4"
       placeholder="Password">
@@ -23,7 +28,7 @@
 
     <!-- Sign in button -->
     <button mdbBtn color="info" block="true" class="my-4" type="submit" [disabled]="disableButton()"
-      (click)="authService.register(email.value, password.value)">Register</button>
+      (click)="authService.register(email.value, password.value, userName.value)">Register</button>
   </form>
   <!-- Default form login -->
 </div>

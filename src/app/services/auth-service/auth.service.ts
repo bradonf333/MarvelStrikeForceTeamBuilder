@@ -25,7 +25,6 @@ export class AuthService {
     this.user$ = this.afAuth.authState.pipe(
       switchMap(user => {
         if (user) {
-          // localStorage.setItem('user', JSON.stringify(user));
           // logged in, get custom user from Firestore
           console.log(user);
           return this.userService.get(user.uid).valueChanges();
@@ -60,6 +59,7 @@ export class AuthService {
     this.router.navigate(['/']);
   }
 
+  // TODO: Still need to get this working.
   async googleLogin() {
     const provider = new firebase.auth.GoogleAuthProvider();
     const credential = await this.afAuth.auth.signInWithPopup(provider);
@@ -79,7 +79,7 @@ export class AuthService {
     return userRef.set(data, { merge: true });
   }
 
-  register(email: string, password: string) {
+  register(email: string, password: string, displayName: string) {
     return new Promise<any>((resolve, reject) => {
       firebase
         .auth()
@@ -87,6 +87,12 @@ export class AuthService {
         .then(
           res => {
             resolve(res);
+            const newUser: User = {
+              uid: res.user.uid,
+              displayName,
+              email: res.user.email
+            };
+            this.userService.add(newUser);
             this.router.navigate(['/']);
           },
           err => reject(err)

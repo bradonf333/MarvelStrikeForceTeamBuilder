@@ -39,17 +39,17 @@
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item avatar dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          <!-- <img *ngIf="authService.user | async as user" src="https://mdbootstrap.com/img/Photos/Avatars/avatar-1.jpg"
-            alt="" class="img-fluid rounded-circle z-depth-0">-->
+          <img *ngIf="authService.user$ | async as user" src={{user.photoURL}} alt=""
+            class="img-fluid rounded-circle z-depth-0">
         </a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-          <a *ngIf="authService.user$ | async as user else login">
-            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/my-account']">My account
-            </a>
+          <div *ngIf="authService.user$ | async as user else login">
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/my-account']">My account</a>
             <a class="dropdown-item waves-light" mdbWavesEffect (click)="authService.logout()">Log out</a>
-          </a>
+          </div>
           <ng-template #login>
             <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/login']">Log in</a>
+            <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/register']">Register</a>
           </ng-template>
         </div>
       </li>
