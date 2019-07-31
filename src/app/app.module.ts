@@ -13,11 +13,11 @@ import { environment } from 'src/environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { ViewCharactersComponent } from './view-characters/view-characters.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { RegisterComponent } from './register/register.component';
 import { MyAccountComponent } from './my-account/my-account.component';
+import { NavBarComponent } from './nav-bar/nav-bar.component';
+import { RegisterComponent } from './register/register.component';
+import { ViewCharactersComponent } from './viewcharacters/view-characters.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
   declarations: [
