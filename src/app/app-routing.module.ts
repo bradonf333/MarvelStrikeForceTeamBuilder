@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AllCharactersComponent } from './all-characters/all-characters.component';
 import { LoginComponent } from './login/login.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { RegisterComponent } from './register/register.component';
-import { ViewCharactersComponent } from './viewcharacters/view-characters.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
@@ -13,7 +13,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, pathMatch: 'full' },
   { path: 'my-account', component: MyAccountComponent, pathMatch: 'full' },
   { path: 'create-character', component: WelcomeComponent, pathMatch: 'full' },
-  { path: 'view-character', component: ViewCharactersComponent, pathMatch: 'full' }
+  { path: 'all-characters', component: AllCharactersComponent, pathMatch: 'full' }
 ];
 
 @NgModule({

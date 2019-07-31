@@ -1,0 +1,21 @@
+<div class='container'>
+  <mdb-card *ngFor='let character of characters$ | async'>
+    <mdb-card-header>{{character.name}}</mdb-card-header>
+    <mdb-card-body>
+      <mdb-card-title>
+        <h6>Abilities</h6>
+      </mdb-card-title>
+      <mdb-card-text>
+        <div *ngFor='let ability of character["abilities"]'>
+          <b class='label'>{{ability.type}}:</b> {{ability.name}}
+        </div>
+        <h6>Traits</h6>
+        <span *ngFor='let trait of character.traits; last as isLast'>
+          {{ trait }}
+          <span *ngIf='trait.length > 1 && isLast != true'>,</span>
+        </span>
+      </mdb-card-text>
+      <a href="" mdbBtn color="primary">Go somewhere!</a>
+    </mdb-card-body>
+  </mdb-card>
+</div>
