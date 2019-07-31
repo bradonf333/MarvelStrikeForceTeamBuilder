@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models/entities/User';
 import { AuthService } from '../services/auth-service/auth.service';
-import { CharacterService } from '../services/character-service/character.service';
 
 @Component({
   selector: 'app-my-account',
@@ -10,14 +9,9 @@ import { CharacterService } from '../services/character-service/character.servic
 })
 export class MyAccountComponent implements OnInit {
   user: User;
-  constructor(
-    public authService: AuthService,
-    private characterService: CharacterService
-  ) {}
+  constructor(public authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.user$.subscribe(data => {
-      this.user = data;
-    });
+    this.user = JSON.parse(localStorage.getItem('userData'));
   }
 }

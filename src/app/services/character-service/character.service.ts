@@ -12,21 +12,15 @@ import { AuthService } from '../auth-service/auth.service';
 })
 export class CharacterService {
   userCharacterCollection: AngularFirestoreCollection<CharacterEntity>;
+  currentUser: User;
   uid: string;
   characters$: Observable<CharacterEntity[]>;
 
   constructor(private afs: AngularFirestore, private authService: AuthService) {
-    // authService.user$.subscribe(user => {
-    //   this.uid = user.uid;
-    //   this.userCharacterCollection = this.afs
-    //     .collection(config.user_collection)
-    //     .doc<User>(this.uid)
-    //     .collection<CharacterEntity>(config.character_collection);
-    // });
-    this.uid = localStorage.getItem('uid');
+    this.currentUser = JSON.parse(localStorage.getItem('userData'));
     this.userCharacterCollection = this.afs
       .collection(config.user_collection)
-      .doc<User>(this.uid)
+      .doc<User>(this.currentUser.uid)
       .collection<CharacterEntity>(config.character_collection);
   }
 

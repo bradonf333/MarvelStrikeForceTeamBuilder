@@ -39,15 +39,22 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    return Boolean(localStorage.getItem('loggedIn'));
+    return Boolean(localStorage.getItem('userData'));
   }
 
   async emailLogin(email: string, password: string) {
     const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
     if (Boolean(result)) {
-      localStorage.setItem('uid', result.user.uid);
-      localStorage.setItem('loggedIn', 'true');
       this.user$ = this.userService.get(result.user.uid).valueChanges();
+      this.user$.subscribe(user => {
+        this.user = {
+          uid: user.uid,
+          photoURL: user.photoURL,
+          displayName: user.displayName,
+          email: user.email
+        };
+        localStorage.setItem('userData', JSON.stringify(this.user));
+      });
     } else {
       console.log('Fail');
     }
@@ -56,8 +63,7 @@ export class AuthService {
 
   async logout() {
     await this.afAuth.auth.signOut();
-    localStorage.removeItem('uid');
-    localStorage.removeItem('loggedIn');
+    localStorage.removeItem('userData');
     this.router.navigate(['/']);
   }
 

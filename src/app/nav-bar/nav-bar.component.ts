@@ -18,7 +18,9 @@ export class NavBarComponent implements OnInit {
     private baseCharService: BaseCharacterService,
     public authService: AuthService,
     public userService: UserService
-  ) {}
+  ) {
+    this.currentUser = JSON.parse(localStorage.getItem('userData'));
+  }
 
   ngOnInit() {}
 

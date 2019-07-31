@@ -19,6 +19,7 @@ import { RegisterComponent } from './register/register.component';
 import { ViewCharactersComponent } from './view-characters/view-characters.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { AllCharactersComponent } from './all-characters/all-characters.component';
+import { CharacterEditComponent } from './character-edit/character-edit.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { AllCharactersComponent } from './all-characters/all-characters.componen
     LoginComponent,
     RegisterComponent,
     MyAccountComponent,
-    AllCharactersComponent
+    AllCharactersComponent,
+    CharacterEditComponent
   ],
   imports: [
     BrowserModule,
