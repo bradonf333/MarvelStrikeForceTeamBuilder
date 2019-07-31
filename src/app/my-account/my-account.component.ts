@@ -10,7 +10,10 @@ import { CharacterService } from '../services/character-service/character.servic
 })
 export class MyAccountComponent implements OnInit {
   user: User;
-  constructor(public authService: AuthService, private characterService: CharacterService) {}
+  constructor(
+    public authService: AuthService,
+    private characterService: CharacterService
+  ) {}
 
   ngOnInit() {
     this.authService.user$.subscribe(data => {

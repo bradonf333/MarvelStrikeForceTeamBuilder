@@ -13,8 +13,8 @@ import { UserService } from '../user-service/user.service';
   providedIn: 'root'
 })
 export class AuthService {
+  loggedIn: boolean;
   user: User;
-  xyUser: User;
   user$: Observable<User>;
 
   constructor(
@@ -26,7 +26,8 @@ export class AuthService {
       switchMap(user => {
         if (user) {
           // logged in, get custom user from Firestore
-          console.log(user);
+          localStorage.setItem('uid', user.uid);
+          localStorage.setItem('loggedIn', 'true');
           return this.userService.get(user.uid).valueChanges();
         } else {
           console.log('User not signed in');
@@ -38,14 +39,14 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    // let isLoggedIn = false;
-
-    return true;
+    return Boolean(localStorage.getItem('loggedIn'));
   }
 
   async emailLogin(email: string, password: string) {
     const result = await this.afAuth.auth.signInWithEmailAndPassword(email, password);
     if (Boolean(result)) {
+      localStorage.setItem('uid', result.user.uid);
+      localStorage.setItem('loggedIn', 'true');
       this.user$ = this.userService.get(result.user.uid).valueChanges();
     } else {
       console.log('Fail');
@@ -55,7 +56,8 @@ export class AuthService {
 
   async logout() {
     await this.afAuth.auth.signOut();
-    localStorage.removeItem('user');
+    localStorage.removeItem('uid');
+    localStorage.removeItem('loggedIn');
     this.router.navigate(['/']);
   }
 

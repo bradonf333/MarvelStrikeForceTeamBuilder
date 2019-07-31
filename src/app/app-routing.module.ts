@@ -4,6 +4,7 @@ import { AllCharactersComponent } from './all-characters/all-characters.componen
 import { LoginComponent } from './login/login.component';
 import { MyAccountComponent } from './my-account/my-account.component';
 import { RegisterComponent } from './register/register.component';
+import { ViewCharactersComponent } from './view-characters/view-characters.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
@@ -13,7 +14,8 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent, pathMatch: 'full' },
   { path: 'my-account', component: MyAccountComponent, pathMatch: 'full' },
   { path: 'create-character', component: WelcomeComponent, pathMatch: 'full' },
-  { path: 'all-characters', component: AllCharactersComponent, pathMatch: 'full' }
+  { path: 'all-characters', component: AllCharactersComponent, pathMatch: 'full' },
+  { path: 'view-characters', component: ViewCharactersComponent, pathMatch: 'full' }
 ];
 
 @NgModule({

@@ -21,12 +21,13 @@
 
       <!-- Users Character Dropdown -->
       <li class="nav-item dropdown" dropdown>
-        <a *ngIf="authService.user$ | async as user" dropdownToggle mdbWavesEffect type="button"
+        <a *ngIf="authService.isLoggedIn" dropdownToggle mdbWavesEffect type="button"
           class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           My Characters<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
           <a class="dropdown-item waves-light" mdbWavesEffect href="#">Create New Character</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Manage Existing Characters</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/view-characters']">Manage Existing
+            Characters</a>
           <div class="divider dropdown-divider"></div>
           <a class="dropdown-item waves-light" mdbWavesEffect (click)=seedCharacters()>Seed Character</a>
         </div>
@@ -34,7 +35,7 @@
 
       <!-- Teams Dropdown -->
       <li class="nav-item dropdown" dropdown>
-        <a *ngIf="authService.user$ | async as user" dropdownToggle mdbWavesEffect type="button"
+        <a *ngIf="authService.isLoggedIn" dropdownToggle mdbWavesEffect type="button"
           class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           Teams<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
@@ -53,11 +54,11 @@
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item avatar dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
-          <img *ngIf="authService.user$ | async as user" src={{user.photoURL}} alt=""
+          <img *ngIf="authService.isLoggedIn" src="" alt=""
             class="img-fluid rounded-circle z-depth-0">
         </a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-          <div *ngIf="authService.user$ | async as user else login">
+          <div *ngIf="authService.isLoggedIn else login">
             <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/my-account']">My account</a>
             <a class="dropdown-item waves-light" mdbWavesEffect (click)="authService.logout()">Log out</a>
           </div>
