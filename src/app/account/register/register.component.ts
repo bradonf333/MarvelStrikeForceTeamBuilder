@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth-service/auth.service';
 import { User } from '../../models/entities/User';
-import { AuthService } from '../../services/auth-service/auth.service';
 import { ConfirmPasswordValidator } from './ConfirmPasswordValidator';
 
 @Component({

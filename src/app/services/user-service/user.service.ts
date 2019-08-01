@@ -19,6 +19,11 @@ export class UserService {
     this.collection = afs.collection(path);
   }
 
+  get uid(): string {
+    const user: User = JSON.parse(localStorage.getItem('userData'));
+    return user.uid;
+  }
+
   get(id: string): AngularFirestoreDocument<User> {
     console.log('[UserService] get: ', id);
     return this.collection.doc<User>(id);

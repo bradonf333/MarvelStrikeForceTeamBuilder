@@ -4,6 +4,7 @@ import { LoginComponent } from './account/login/login.component';
 import { MyAccountComponent } from './account/my-account/my-account.component';
 import { RegisterComponent } from './account/register/register.component';
 import { AllCharactersComponent } from './characters/all-characters/all-characters.component';
+import { CharacterAddComponent } from './characters/character-add/character-add.component';
 import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
 import { ViewCharactersComponent } from './characters/view-characters/view-characters.component';
 import { WelcomeComponent } from './layout/welcome/welcome.component';
@@ -17,7 +18,8 @@ const routes: Routes = [
   { path: 'create-character', component: WelcomeComponent, pathMatch: 'full' },
   { path: 'all-characters', component: AllCharactersComponent, pathMatch: 'full' },
   { path: 'view-characters', component: ViewCharactersComponent, pathMatch: 'full' },
-  { path: 'character-edit/:id', component: CharacterEditComponent, pathMatch: 'full' }
+  { path: 'character-edit/:id', component: CharacterEditComponent, pathMatch: 'full' },
+  { path: 'character-add/:id', component: CharacterAddComponent, pathMatch: 'full' }
 ];
 
 @NgModule({
