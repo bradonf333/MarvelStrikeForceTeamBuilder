@@ -26,9 +26,8 @@ export class AuthService {
       switchMap(user => {
         if (user) {
           // logged in, get custom user from Firestore
-          localStorage.setItem('uid', user.uid);
-          localStorage.setItem('loggedIn', 'true');
-          return this.userService.get(user.uid).valueChanges();
+          return of(JSON.parse(localStorage.getItem('userData'))); // Trying to reduce reads to the DB.
+          // return this.userService.get(user.uid).valueChanges();
         } else {
           console.log('User not signed in');
           // logged out, null
