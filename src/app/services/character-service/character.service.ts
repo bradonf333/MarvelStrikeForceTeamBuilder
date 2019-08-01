@@ -37,4 +37,20 @@ export class CharacterService {
       })
     );
   }
+
+  get(id: string): Observable<CharacterEntity> {
+    console.log('[CharacterService] get id ', id);
+    return this.userCharacterCollection
+      .doc<CharacterEntity>(id)
+      .snapshotChanges()
+      .pipe(
+        map(action => {
+          if (action.payload.exists) {
+            const data = action.payload.data();
+            const payloadId = action.payload.id;
+            return { payloadId, ...data };
+          }
+        })
+      );
+  }
 }

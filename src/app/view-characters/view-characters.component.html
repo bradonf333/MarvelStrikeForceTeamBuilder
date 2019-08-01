@@ -15,7 +15,8 @@
           <span *ngIf='trait.length > 1 && isLast != true'>,</span>
         </span>
       </mdb-card-text>
-      <!-- <a [routerLink]="['/character-edit', character.id]" mdbBtn color=" primary">Edit</a> -->
+      <button mdbBtn color="info" block="true" class="my-4"
+        [routerLink]="['/character-edit', character.id]">Edit</button>
     </mdb-card-body>
   </mdb-card>
 </div>
