@@ -17,7 +17,7 @@ const routes: Routes = [
   { path: 'create-character', component: WelcomeComponent, pathMatch: 'full' },
   { path: 'all-characters', component: AllCharactersComponent, pathMatch: 'full' },
   { path: 'view-characters', component: ViewCharactersComponent, pathMatch: 'full' },
-  { path: 'edit-character/:id', component: CharacterEditComponent, pathMatch: 'full' }
+  { path: 'character-edit/:id', component: CharacterEditComponent, pathMatch: 'full' }
 ];
 
 @NgModule({

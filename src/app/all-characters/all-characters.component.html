@@ -15,7 +15,8 @@
           <span *ngIf='trait.length > 1 && isLast != true'>,</span>
         </span>
       </mdb-card-text>
-      <a href="" mdbBtn color="primary">Go somewhere!</a>
+      <button *ngIf="authService.isLoggedIn" mdbBtn color="info" block="true" class="my-4"
+        [routerLink]="['/character-edit', character.id]">Add to My Characters</button>
     </mdb-card-body>
   </mdb-card>
 </div>

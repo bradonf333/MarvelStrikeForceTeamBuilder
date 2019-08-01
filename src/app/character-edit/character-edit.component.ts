@@ -43,16 +43,6 @@ export class CharacterEditComponent implements OnInit {
       // TODO: Create an error page/component.
       this.router.navigate(['']);
     } else {
-      // const characterObservable = this.charService.get(this.id);
-      // characterObservable.subscribe(character => {
-      //   // Bind the form values to the Coffee from the DB.
-      //   this.abilities = character.abilities;
-      //   this.level = character.level;
-      //   this.power = character.power;
-      //   this.redStars = character.redStars;
-      //   // this.characterName = character.traits;
-      //   this.yellowStars = character.yellowStars;
-      // });
     }
   }
 
