@@ -9,17 +9,17 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IconsModule, MDBBootstrapModule } from 'angular-bootstrap-md';
 /* Misc */
 import { environment } from 'src/environments/environment';
+import { LoginComponent } from './account/login/login.component';
+import { MyAccountComponent } from './account/my-account/my-account.component';
+import { RegisterComponent } from './account/register/register.component';
 /* My Components */
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
-import { MyAccountComponent } from './my-account/my-account.component';
-import { NavBarComponent } from './nav-bar/nav-bar.component';
-import { RegisterComponent } from './register/register.component';
-import { ViewCharactersComponent } from './view-characters/view-characters.component';
-import { WelcomeComponent } from './welcome/welcome.component';
-import { AllCharactersComponent } from './all-characters/all-characters.component';
-import { CharacterEditComponent } from './character-edit/character-edit.component';
+import { AllCharactersComponent } from './characters/all-characters/all-characters.component';
+import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
+import { ViewCharactersComponent } from './characters/view-characters/view-characters.component';
+import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
+import { WelcomeComponent } from './layout/welcome/welcome.component';
 
 @NgModule({
   declarations: [

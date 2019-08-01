@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AllCharactersComponent } from './all-characters/all-characters.component';
-import { CharacterEditComponent } from './character-edit/character-edit.component';
-import { LoginComponent } from './login/login.component';
-import { MyAccountComponent } from './my-account/my-account.component';
-import { RegisterComponent } from './register/register.component';
-import { ViewCharactersComponent } from './view-characters/view-characters.component';
-import { WelcomeComponent } from './welcome/welcome.component';
+import { LoginComponent } from './account/login/login.component';
+import { MyAccountComponent } from './account/my-account/my-account.component';
+import { RegisterComponent } from './account/register/register.component';
+import { AllCharactersComponent } from './characters/all-characters/all-characters.component';
+import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
+import { ViewCharactersComponent } from './characters/view-characters/view-characters.component';
+import { WelcomeComponent } from './layout/welcome/welcome.component';
 
 const routes: Routes = [
   { path: '', component: WelcomeComponent, pathMatch: 'full' },

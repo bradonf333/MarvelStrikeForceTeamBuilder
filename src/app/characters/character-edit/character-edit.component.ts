@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { CharacterService } from '../services/character-service/character.service';
+import { CharacterService } from '../../services/character-service/character.service';
 
 @Component({
   selector: 'app-character-edit',

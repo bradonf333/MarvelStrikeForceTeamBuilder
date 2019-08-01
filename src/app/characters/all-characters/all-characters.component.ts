@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CharacterEntity } from '../models/entities/CharacterEntity';
-import { AuthService } from '../services/auth-service/auth.service';
-import { BaseCharacterService } from '../services/base-character-service/base-character.service';
+import { CharacterEntity } from '../../models/entities/CharacterEntity';
+import { AuthService } from '../../services/auth-service/auth.service';
+import { BaseCharacterService } from '../../services/base-character-service/base-character.service';
 
 @Component({
   selector: 'app-all-characters',

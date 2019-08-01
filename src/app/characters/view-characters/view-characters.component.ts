@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CharacterEntity } from '../models/entities/CharacterEntity';
-import { CharacterService } from '../services/character-service/character.service';
+import { CharacterEntity } from '../../models/entities/CharacterEntity';
+import { CharacterService } from '../../services/character-service/character.service';
 
 @Component({
   selector: 'app-view-characters',
