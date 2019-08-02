@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
 import { BaseCharacterService } from 'src/app/services/base-character-service/base-character.service';
+import { CharacterService } from 'src/app/services/character-service/character.service';
 import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
@@ -17,28 +18,29 @@ export class CharacterAddComponent implements OnInit {
   newCharacterForm: FormGroup;
   newCharacter: CharacterEntity;
   uid: string;
-  numOfAbilities: number;
   maxLevel = 70;
   maxStarLevel = 7;
+  charName: string;
 
   constructor(
     private actRoute: ActivatedRoute,
     private router: Router,
     private fb: FormBuilder,
     private baseCharService: BaseCharacterService,
+    private charService: CharacterService,
     private userService: UserService
   ) {}
 
   ngOnInit() {
     this.sub = this.actRoute.paramMap.subscribe(params => {
       this.characterId = params.get('id');
+    });
 
-      this.newCharacterForm = this.fb.group({
-        level: ['', [Validators.min(2), Validators.max(this.maxLevel)]],
-        power: ['', [Validators.required]],
-        redStars: ['', [Validators.required]],
-        yellowStars: ['', [Validators.required]]
-      });
+    this.newCharacterForm = this.fb.group({
+      level: ['', [Validators.min(2), Validators.max(this.maxLevel)]],
+      power: ['', [Validators.required]],
+      redStars: ['', [Validators.required]],
+      yellowStars: ['', [Validators.required]]
     });
 
     this.uid = this.userService.uid;
@@ -50,12 +52,15 @@ export class CharacterAddComponent implements OnInit {
     if (this.characterId === null) {
       // If undefined, then re-route because it is an error.
       // TODO: Create an error page/component.
-      this.router.navigate(['']);
+      this.router.navigate(['/welcome']);
     } else {
       this.baseCharService.get(this.characterId).subscribe(character => {
         // Load the base data for the character.
         this.newCharacter = character;
-        this.numOfAbilities = this.newCharacter.abilities.length;
+        this.charName = this.newCharacter.name;
+
+        // TODO: Still need to figure this out.
+        this.charService.doesToonExist(this.charName);
       });
     }
   }
@@ -70,7 +75,7 @@ export class CharacterAddComponent implements OnInit {
     this.newCharacter.yellowStars = this.yellowStars.value;
     this.newCharacter.redStars = this.redStars.value;
     console.log('Updated Character: ', this.newCharacter);
-    // TODO: CharacterService.Add
+    this.charService.add(this.newCharacter).then(res => {});
   }
 
   get level() {

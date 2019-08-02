@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { config } from 'src/app/app.config';
 import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
@@ -52,5 +52,38 @@ export class CharacterService {
           }
         })
       );
+  }
+
+  doesToonExist(name: string): boolean {
+    let doesCharExist = false;
+    this.userCharacterCollection.ref
+      .where('name', '==', name)
+      .get()
+      .then(querySnapshot => {
+        querySnapshot.forEach(doc => {
+          if (doc.id !== null) {
+            doesCharExist = true;
+            console.log(doesCharExist);
+            console.log('DocId', doc.data());
+          }
+        });
+      });
+    return doesCharExist;
+  }
+
+  add(character: CharacterEntity): Promise<CharacterEntity> {
+    const subject = new Subject<CharacterEntity>();
+
+    console.log('[CharacterService] adding: ', character);
+    this.userCharacterCollection.add(character).then(ref => {
+      const newItem = {
+        id: ref.id,
+        ...(character as any) /* workaround until spreads work with generic types */
+      };
+      ref.set(newItem);
+      subject.next(newItem);
+    });
+
+    return subject.asObservable().toPromise();
   }
 }
