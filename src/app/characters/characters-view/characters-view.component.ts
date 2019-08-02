@@ -5,10 +5,10 @@ import { CharacterService } from '../../services/character-service/character.ser
 
 @Component({
   selector: 'app-view-characters',
-  templateUrl: './view-characters.component.html',
-  styleUrls: ['./view-characters.component.scss']
+  templateUrl: './characters-view.component.html',
+  styleUrls: ['./characters-view.component.scss']
 })
-export class ViewCharactersComponent implements OnInit {
+export class CharactersViewComponent implements OnInit {
   characters$: Observable<CharacterEntity[]>;
 
   constructor(private characterService: CharacterService) {

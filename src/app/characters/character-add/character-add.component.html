@@ -1,7 +1,7 @@
 <!-- <pre>{{newCharacter | json}}</pre> -->
 
 <!-- Card -->
-<div class="card container">
+<div *ngIf="newCharacter" class="card container">
 
   <div class="primary-color white-text">
     <h4 class="title text-center">{{newCharacter.name}}</h4>
@@ -11,24 +11,22 @@
 
     <!-- Material form register -->
     <form [formGroup]="newCharacterForm">
-
+        
       <!-- Material input text -->
-      <h6 class="form">Ability Levels</h6>
+      <h5 class="form">Ability Levels</h5>
       <div class="form-row">
-        <div class="col-md-6">
+        <div class="col-md-8">
           <div *ngFor='let ability of newCharacter["abilities"] let i = index;'><span>{{ability.name}}</span>
-            <div class="def-number-input number-input safari_only">
-              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
+            <div>
+              <!-- TODO: Work on the Plus and Minus Icon styling -->
+              <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button" class="btn btn-default btn-rounded"><i class="fa fa-minus fa-xs" aria-hidden="true"></i></button>
               <input class="quantity" min="1" max={{ability.maxLevel}} name="abilityLevel{{i}}" value="1" type="number">
-              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
+              <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="btn btn-primary"><i class="fa fa-plus fa-xs" aria-hidden="true"></i></button>
             </div>
           </div>
         </div>
       </div>
-
-      <div class="text-center py-4 mt-3">
-        <button class="btn btn-cyan" type="submit">Save</button>
-      </div>
+        <button type="button" class="btn btn-primary btn-rounded waves-effect" type="submit">Save</button>
     </form>
     <!-- Material form register -->
 
