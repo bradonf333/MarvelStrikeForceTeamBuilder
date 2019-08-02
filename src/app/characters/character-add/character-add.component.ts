@@ -17,6 +17,7 @@ export class CharacterAddComponent implements OnInit {
   newCharacterForm: FormGroup;
   newCharacter: CharacterEntity;
   uid: string;
+  numOfAbilities: number;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -53,6 +54,7 @@ export class CharacterAddComponent implements OnInit {
       this.baseCharService.get(this.characterId).subscribe(character => {
         // Load the base data for the character.
         this.newCharacter = character;
+        this.numOfAbilities = this.newCharacter.abilities.length;
       });
     }
   }
