@@ -12,22 +12,37 @@
     <!-- Material form register -->
     <form [formGroup]="newCharacterForm">
 
-      <!-- Material input text -->
-      <h5 class="form">Ability Levels</h5>
-      <div class="form-row">
-        <!-- <div class="col-md-8"> -->
-        <div *ngFor='let ability of newCharacter["abilities"] let i = index;'><span>{{ability.name}}</span>
-          <div class="def-number-input number-input safari_only">
-            <!-- TODO: Work on the Plus and Minus Icon styling -->
-            <a onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button"
-              class="btn-floating btn-sm btn-mdb-color"><i class="fa fa-minus fa-xs" aria-hidden="true"></i></a>
-            <input class="quantity" min="1" max={{ability.maxLevel}} name="abilityLevel{{i}}" value="1" type="number">
-            <a onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-              class="btn-floating btn-sm btn-mdb-color"><i class="fa fa-plus fa-xs" aria-hidden="true"></i></a>
-          </div>
+      <!-- Character Level -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Character Level</span>
         </div>
-        <!-- </div> -->
+        <input type="number" class="form-control" min="1" max="70" name="characterLevel" value="1"
+          aria-describedby="inputGroup-sizing-sm">
       </div>
+
+      <!-- Power Level -->
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Power Level</span>
+        </div>
+        <input type="number" class="form-control" min="1" max="100000" name="characterLevel" value="1"
+          aria-describedby="inputGroup-sizing-sm">
+      </div>
+
+      <!-- Abilities -->
+      <div class="form-row">
+        <h5 class="form">Ability Levels</h5>
+      </div>
+
+      <div *ngFor='let ability of newCharacter["abilities"] let i = index;' class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" style="font-weight: 700;">{{ability.type}}</span>
+          <span class="input-group-text">{{ability.name}}</span>
+        </div>
+        <input type="number" class="form-control" min="1" max={{ability.maxLevel}} name="abilityLevel{{i}}" value="1">
+      </div>
+
       <button type="button" class="btn btn-primary btn-rounded waves-effect" type="submit">Save</button>
     </form>
   </div>
@@ -35,9 +50,3 @@
 
 </div>
 <!-- Card -->
-
-<div class="def-number-input number-input safari_only">
-  <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" class="minus"></button>
-  <input class="quantity" min="0" name="quantity" value="1" type="number">
-  <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus"></button>
-</div>
