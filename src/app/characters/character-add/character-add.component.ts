@@ -18,6 +18,8 @@ export class CharacterAddComponent implements OnInit {
   newCharacter: CharacterEntity;
   uid: string;
   numOfAbilities: number;
+  maxLevel = 70;
+  maxStarLevel = 7;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -32,9 +34,8 @@ export class CharacterAddComponent implements OnInit {
       this.characterId = params.get('id');
 
       this.newCharacterForm = this.fb.group({
-        abilities: ['', [Validators.required]],
-        level: ['', [Validators.minLength(2), Validators.maxLength(30)]],
-        power: ['', [Validators.required, Validators.minLength(6)]],
+        level: ['', [Validators.min(2), Validators.max(this.maxLevel)]],
+        power: ['', [Validators.required]],
         redStars: ['', [Validators.required]],
         yellowStars: ['', [Validators.required]]
       });
@@ -57,5 +58,31 @@ export class CharacterAddComponent implements OnInit {
         this.numOfAbilities = this.newCharacter.abilities.length;
       });
     }
+  }
+
+  updateAbility(abilityName: string, newLevel: number) {
+    this.newCharacter.abilities.find(a => a.name === abilityName).level = newLevel;
+  }
+
+  onSubmit() {
+    this.newCharacter.level = this.level.value;
+    this.newCharacter.power = this.power.value;
+    this.newCharacter.yellowStars = this.yellowStars.value;
+    this.newCharacter.redStars = this.redStars.value;
+    console.log('Updated Character: ', this.newCharacter);
+    // TODO: CharacterService.Add
+  }
+
+  get level() {
+    return this.newCharacterForm.get('level');
+  }
+  get power() {
+    return this.newCharacterForm.get('power');
+  }
+  get yellowStars() {
+    return this.newCharacterForm.get('yellowStars');
+  }
+  get redStars() {
+    return this.newCharacterForm.get('redStars');
   }
 }

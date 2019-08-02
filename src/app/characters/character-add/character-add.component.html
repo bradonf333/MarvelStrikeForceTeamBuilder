@@ -10,7 +10,7 @@
   <div class="card-body">
 
     <!-- Material form register -->
-    <form [formGroup]="newCharacterForm">
+    <form [formGroup]="newCharacterForm" (ngSubmit)="onSubmit()">
 
       <!-- Character Level -->
       <div class="input-group mb-3">
@@ -18,7 +18,7 @@
           <span class="input-group-text" id="inputGroup-sizing-default">Character Level</span>
         </div>
         <input type="number" class="form-control" min="1" max="70" name="characterLevel" value="1"
-          aria-describedby="inputGroup-sizing-sm">
+          aria-describedby="inputGroup-sizing-sm" [formControl]="level">
       </div>
 
       <!-- Power Level -->
@@ -27,7 +27,7 @@
           <span class="input-group-text" id="inputGroup-sizing-default">Power Level</span>
         </div>
         <input type="number" class="form-control" min="1" max="100000" name="characterLevel" value="1"
-          aria-describedby="inputGroup-sizing-sm">
+          aria-describedby="inputGroup-sizing-sm" [formControl]="power">
       </div>
 
       <!-- Abilities -->
@@ -40,10 +40,41 @@
           <span class="input-group-text" style="font-weight: 700;">{{ability.type}}</span>
           <span class="input-group-text">{{ability.name}}</span>
         </div>
-        <input type="number" class="form-control" min="1" max={{ability.maxLevel}} name="abilityLevel{{i}}" value="1">
+        <input (change)="updateAbility(ability.name, $event.target.value)" type="number" class="form-control" min="1"
+          max={{ability.maxLevel}} name="abilityLevel{{i}}" value="1">
       </div>
 
-      <button type="button" class="btn btn-primary btn-rounded waves-effect" type="submit">Save</button>
+      <!-- Star Ranks -->
+      <div class="form-row">
+        <h5 class="form">Star Ranks</h5>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Yellow Stars</span>
+        </div>
+        <input type="number" class="form-control" min="1" max="{{maxStarLevel}}" name="yellowStars" value="1"
+          aria-describedby="inputGroup-sizing-sm" [formControl]="yellowStars">
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Red Stars</span>
+        </div>
+        <input type="number" class="form-control" min="1" max="{{maxStarLevel}}" name="redStars" value="1"
+          aria-describedby="inputGroup-sizing-sm" [formControl]="redStars">
+      </div>
+
+      <!-- YellowStar -->
+      <!-- <star-rating labelText="Yellow Star Rank" [starType]="'svg'" [rating]="1" labelPosition="left" staticColor="ok"
+        [numOfStars]="maxStarLevel">
+      </star-rating> -->
+
+      <!-- RedStar -->
+      <!-- <star-rating labelText="Red Star Rank" [starType]="'svg'" [rating]="0" labelPosition="left" staticColor="negative"
+        [numOfStars]="maxStarLevel">
+      </star-rating> -->
+
+      <button type="button" class="btn btn-primary btn-rounded waves-effect" type="submit"
+        [disabled]="newCharacterForm.invalid">Save</button>
     </form>
   </div>
   <!-- Card body -->

@@ -16,11 +16,11 @@ import { RegisterComponent } from './account/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AllCharactersComponent } from './characters/all-characters/all-characters.component';
+import { CharacterAddComponent } from './characters/character-add/character-add.component';
 import { CharacterEditComponent } from './characters/character-edit/character-edit.component';
+import { CharactersViewComponent } from './characters/characters-view/characters-view.component';
 import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
 import { WelcomeComponent } from './layout/welcome/welcome.component';
-import { CharacterAddComponent } from './characters/character-add/character-add.component';
-import { CharactersViewComponent } from './characters/characters-view/characters-view.component';
 
 @NgModule({
   declarations: [
