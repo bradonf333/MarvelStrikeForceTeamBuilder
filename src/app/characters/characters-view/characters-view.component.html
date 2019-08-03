@@ -3,14 +3,35 @@
     <mdb-card-header>{{character.name}}</mdb-card-header>
     <mdb-card-body>
       <mdb-card-title>
-        <h6>Abilities</h6>
       </mdb-card-title>
+      <div>
+        <h6>Level</h6>
+        <span>{{character.level | number}}</span>
+        <h6>Power</h6>
+        <span>{{character.power | number}}</span>
+        <h6>Abilities</h6>
+      </div>
       <mdb-card-text>
-        <div *ngFor='let ability of character["abilities"]'>
-          <b class='label'>{{ability.type}}:</b> {{ability.name}}
-        </div>
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th scope="col">Type</th>
+              <th scope="col">Name</th>
+              <th scope="col">Level</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let ability of character["abilities"]; let i = index'>
+              <td><b>{{ability.type}}:</b></td>
+              <td>{{ability.name}}</td>
+              <td>{{ability.level}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <h6>Yellow Star Rank</h6> {{character.yellowStars}}
+        <h6>Red Star Rank</h6> {{character.redStars}}
         <h6>Traits</h6>
-        <span *ngFor='let trait of character.traits; last as isLast'>
+        <span *ngFor=' let trait of character.traits; last as isLast'>
           {{ trait }}
           <span *ngIf='trait.length > 1 && isLast != true'>,</span>
         </span>
