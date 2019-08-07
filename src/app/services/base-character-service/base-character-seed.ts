@@ -1,4 +1,5 @@
 import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
+import { Gear } from 'src/app/models/entities/Gear';
 import { Trait } from 'src/app/models/entities/Trait';
 import { RedRank } from 'src/app/models/ranks/RedRank';
 import { YellowRank } from 'src/app/models/ranks/YellowRank';
@@ -64,6 +65,7 @@ export const BaseIronFist: CharacterEntity = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -103,6 +105,7 @@ export const BaseJessicaJones = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -149,6 +152,7 @@ export const BaseDareDevil = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -188,6 +192,7 @@ export const BaseLukeCage = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -227,6 +232,7 @@ export const BaseRonan = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -266,6 +272,7 @@ export const BaseReaper = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -305,6 +312,7 @@ export const BaseOracle = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -344,6 +352,7 @@ export const BaseNoble = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -383,6 +392,7 @@ export const BaseRoyalGuard = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -422,6 +432,7 @@ export const BaseSpiderMan = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -461,6 +472,7 @@ export const BasePunisher = {
     }
   ],
   level: 0,
+  gear: new Gear(1),
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
