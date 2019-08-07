@@ -6,7 +6,6 @@ export class Gear {
   slot4: boolean;
   slot5: boolean;
   slot6: boolean;
-  private maxGearTier = 13;
 
   constructor(gearTier: number) {
     this.tier = gearTier;
@@ -32,8 +31,6 @@ export class Gear {
       this.slot6 = false;
     }
   }
-
-  get maxGear() {
-    return this.maxGearTier;
-  }
 }
+
+export const maxGearTier = 13;

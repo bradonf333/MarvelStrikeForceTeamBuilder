@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
+import { maxGearTier } from 'src/app/models/entities/Gear';
 import { BaseCharacterService } from 'src/app/services/base-character-service/base-character.service';
 import { CharacterService } from 'src/app/services/character-service/character.service';
 import { UserService } from 'src/app/services/user-service/user.service';
@@ -21,6 +22,7 @@ export class CharacterAddComponent implements OnInit {
   maxLevel = 70;
   maxStarLevel = 7;
   charName: string;
+  maxGearTier = maxGearTier;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -40,7 +42,17 @@ export class CharacterAddComponent implements OnInit {
       level: ['', [Validators.min(2), Validators.max(this.maxLevel)]],
       power: ['', [Validators.required]],
       redStars: ['', [Validators.required]],
-      yellowStars: ['', [Validators.required]]
+      yellowStars: ['', [Validators.required]],
+      gearTier: [
+        '',
+        [Validators.required, Validators.min(1), Validators.max(this.maxGearTier)]
+      ],
+      gearSlot1: ['', Validators.required],
+      gearSlot2: ['', Validators.required],
+      gearSlot3: ['', Validators.required],
+      gearSlot4: ['', Validators.required],
+      gearSlot5: ['', Validators.required],
+      gearSlot6: ['', Validators.required]
     });
 
     this.uid = this.userService.uid;
@@ -91,5 +103,26 @@ export class CharacterAddComponent implements OnInit {
   }
   get redStars() {
     return this.newCharacterForm.get('redStars');
+  }
+  get gearTier() {
+    return this.newCharacterForm.get('gearTier');
+  }
+  get gearSlot1() {
+    return this.newCharacterForm.get('gearSlot1');
+  }
+  get gearSlot2() {
+    return this.newCharacterForm.get('gearSlot2');
+  }
+  get gearSlot3() {
+    return this.newCharacterForm.get('gearSlot3');
+  }
+  get gearSlot4() {
+    return this.newCharacterForm.get('gearSlot4');
+  }
+  get gearSlot5() {
+    return this.newCharacterForm.get('gearSlot5');
+  }
+  get gearSlot6() {
+    return this.newCharacterForm.get('gearSlot6');
   }
 }

@@ -44,6 +44,31 @@
           max={{ability.maxLevel}} name="abilityLevel{{i}}" value="1">
       </div>
 
+      <!-- Gear -->
+      <div class="form-row">
+        <h5 class="form">Gear</h5>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Gear Tier</span>
+        </div>
+        <input type="number" class="form-control" min="1" max={{maxGearTier}} name="characterLevel" value="1"
+          aria-describedby="inputGroup-sizing-sm" [formControl]="gearTier">
+      </div>
+
+      <div class="form-row">
+        <h5 class="form">Gear Slots</h5>
+      </div>
+      <div class="input-group mb-3">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroup-sizing-default">Slot 1</span>
+        </div>
+        <!--TODO: Need to figure out styling for this.-->
+        <input type="checkbox" style="padding: 0px;" class="form-control" name="gearSlot1"
+          aria-describedby="inputGroup-sizing-sm" [formControl]="gearSlot1">
+      </div>
+
+
       <!-- Star Ranks -->
       <div class="form-row">
         <h5 class="form">Star Ranks</h5>
