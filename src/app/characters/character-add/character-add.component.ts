@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
-import { maxGearTier } from 'src/app/models/entities/Gear';
+import { Gear, maxGearTier } from 'src/app/models/entities/Gear';
 import { BaseCharacterService } from 'src/app/services/base-character-service/base-character.service';
 import { CharacterService } from 'src/app/services/character-service/character.service';
 import { UserService } from 'src/app/services/user-service/user.service';
@@ -87,6 +87,14 @@ export class CharacterAddComponent implements OnInit {
     this.newCharacter.power = this.power.value;
     this.newCharacter.yellowStars = this.yellowStars.value;
     this.newCharacter.redStars = this.redStars.value;
+    this.newCharacter.gear = new Gear(this.gearTier.value);
+    this.newCharacter.gear.slot1 = this.gearSlot1.value;
+    this.newCharacter.gear.slot2 = this.gearSlot2.value;
+    this.newCharacter.gear.slot3 = this.gearSlot3.value;
+    this.newCharacter.gear.slot4 = this.gearSlot4.value;
+    this.newCharacter.gear.slot5 = this.gearSlot5.value;
+    this.newCharacter.gear.slot6 = this.gearSlot6.value;
+
     console.log('Updated Character: ', this.newCharacter);
     // TODO: Need some sort of confirmation, maybe ask if they want to go to characters-vew or back to all-characters.
     this.charService.add(this.newCharacter).then(res => {});

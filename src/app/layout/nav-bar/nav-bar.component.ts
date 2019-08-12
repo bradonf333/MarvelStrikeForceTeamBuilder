@@ -25,8 +25,8 @@ export class NavBarComponent implements OnInit {
   ngOnInit() {}
 
   seedCharacters() {
-    // this.baseCharService.add(
-    //   this.baseCharacters.baseCharacters.find(x => x.name === 'Punisher')
-    // );
+    this.baseCharService.add(
+      this.baseCharacters.baseCharacters.find(x => x.name === 'Kree Cyborg')
+    );
   }
 }

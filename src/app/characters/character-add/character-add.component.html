@@ -57,16 +57,56 @@
       </div>
 
       <div class="form-row">
-        <h5 class="form">Gear Slots</h5>
+        <h5 class="form" id="gearSlots">Gear Slots</h5>
       </div>
-      <div class="input-group mb-3">
-        <div class="input-group-prepend">
-          <span class="input-group-text" id="inputGroup-sizing-default">Slot 1</span>
+      <div class="form-row">
+        <!-- Column 1-->
+        <div class="col">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Gear Slot 1</span>
+            </div>
+            <mdb-checkbox class="mt-2" [formControl]="gearSlot1"></mdb-checkbox>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Gear Slot 2</span>
+            </div>
+            <mdb-checkbox class="mt-2" [formControl]="gearSlot2"></mdb-checkbox>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Gear Slot 3</span>
+            </div>
+            <mdb-checkbox class="mt-2" [formControl]="gearSlot3"></mdb-checkbox>
+          </div>
         </div>
-        <!--TODO: Need to figure out styling for this.-->
-        <input type="checkbox" style="padding: 0px;" class="form-control" name="gearSlot1"
-          aria-describedby="inputGroup-sizing-sm" [formControl]="gearSlot1">
+        <!-- End Column 1 -->
+        <!-- Column 2-->
+        <div class="col">
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Gear Slot 4</span>
+            </div>
+            <mdb-checkbox class="mt-2" [formControl]="gearSlot4"></mdb-checkbox>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Gear Slot 5</span>
+            </div>
+            <mdb-checkbox class="mt-2" [formControl]="gearSlot5"></mdb-checkbox>
+          </div>
+          <div class="input-group mb-3">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="inputGroup-sizing-default">Gear Slot 6</span>
+            </div>
+            <mdb-checkbox class="mt-2" [formControl]="gearSlot6"></mdb-checkbox>
+          </div>
+        </div>
+        <!-- End Column 2 -->
       </div>
+      <!-- End Row -->
+
 
 
       <!-- Star Ranks -->

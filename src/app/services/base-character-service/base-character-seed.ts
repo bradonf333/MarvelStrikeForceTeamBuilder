@@ -6,6 +6,7 @@ import { YellowRank } from 'src/app/models/ranks/YellowRank';
 
 const yellowRank = Object.assign({}, new YellowRank(0, 0));
 const redRank = Object.assign({}, new RedRank(0, yellowRank));
+const baseGear = Object.assign({}, new Gear(1));
 
 export class BaseCharacters {
   baseCharacters: CharacterEntity[] = [
@@ -19,7 +20,8 @@ export class BaseCharacters {
     BaseOracle,
     BaseReaper,
     BaseRoyalGuard,
-    BasePunisher
+    BasePunisher,
+    BaseCyborg
   ];
 }
 
@@ -65,7 +67,7 @@ export const BaseIronFist: CharacterEntity = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -105,7 +107,7 @@ export const BaseJessicaJones = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -152,7 +154,7 @@ export const BaseDareDevil = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -192,7 +194,7 @@ export const BaseLukeCage = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -232,7 +234,7 @@ export const BaseRonan = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -272,7 +274,7 @@ export const BaseReaper = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -312,7 +314,7 @@ export const BaseOracle = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -352,7 +354,47 @@ export const BaseNoble = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
+  power: 0,
+  yellowStars: yellowRank,
+  redStars: redRank
+};
+
+export const BaseCyborg = {
+  name: 'Kree Cyborg',
+  traits: [
+    Trait.Villain,
+    Trait.Cosmic,
+    Trait.Tech,
+    Trait.Blaster,
+    Trait.Kree,
+    Trait.Minion
+  ],
+  abilities: [
+    {
+      type: 'Basic',
+      name: 'Energy Blaster',
+      description: 'DescriptionPlaceHolder',
+      level: 1,
+      maxLevel: 7
+    },
+    {
+      type: 'Special',
+      name: 'Auto Targeter',
+      description: 'DescriptionPlaceHolder',
+      level: 1,
+      maxLevel: 7
+    },
+    {
+      type: 'Passive',
+      name: 'Integrated Systems',
+      description: 'DescriptionPlaceHolder',
+      level: 1,
+      maxLevel: 5
+    }
+  ],
+  level: 0,
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -392,7 +434,7 @@ export const BaseRoyalGuard = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -432,7 +474,7 @@ export const BaseSpiderMan = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
@@ -472,7 +514,7 @@ export const BasePunisher = {
     }
   ],
   level: 0,
-  gear: new Gear(1),
+  gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
   redStars: redRank
