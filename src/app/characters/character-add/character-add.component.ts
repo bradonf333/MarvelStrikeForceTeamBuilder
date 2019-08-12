@@ -47,12 +47,12 @@ export class CharacterAddComponent implements OnInit {
         '',
         [Validators.required, Validators.min(1), Validators.max(this.maxGearTier)]
       ],
-      gearSlot1: ['', Validators.required],
-      gearSlot2: ['', Validators.required],
-      gearSlot3: ['', Validators.required],
-      gearSlot4: ['', Validators.required],
-      gearSlot5: ['', Validators.required],
-      gearSlot6: ['', Validators.required]
+      gearSlot1: [''],
+      gearSlot2: [''],
+      gearSlot3: [''],
+      gearSlot4: [''],
+      gearSlot5: [''],
+      gearSlot6: ['']
     });
 
     this.uid = this.userService.uid;
@@ -87,13 +87,19 @@ export class CharacterAddComponent implements OnInit {
     this.newCharacter.power = this.power.value;
     this.newCharacter.yellowStars = this.yellowStars.value;
     this.newCharacter.redStars = this.redStars.value;
-    this.newCharacter.gear = new Gear(this.gearTier.value);
-    this.newCharacter.gear.slot1 = this.gearSlot1.value;
-    this.newCharacter.gear.slot2 = this.gearSlot2.value;
-    this.newCharacter.gear.slot3 = this.gearSlot3.value;
-    this.newCharacter.gear.slot4 = this.gearSlot4.value;
-    this.newCharacter.gear.slot5 = this.gearSlot5.value;
-    this.newCharacter.gear.slot6 = this.gearSlot6.value;
+    this.newCharacter.gear = Object.assign({}, new Gear(this.gearTier.value));
+    this.newCharacter.gear.slot1 =
+      this.gearSlot1.value == null ? false : this.gearSlot1.value;
+    this.newCharacter.gear.slot2 =
+      this.gearSlot2.value == null ? false : this.gearSlot2.value;
+    this.newCharacter.gear.slot3 =
+      this.gearSlot3.value == null ? false : this.gearSlot3.value;
+    this.newCharacter.gear.slot4 =
+      this.gearSlot4.value == null ? false : this.gearSlot4.value;
+    this.newCharacter.gear.slot5 =
+      this.gearSlot5.value == null ? false : this.gearSlot5.value;
+    this.newCharacter.gear.slot6 =
+      this.gearSlot6.value == null ? false : this.gearSlot6.value;
 
     console.log('Updated Character: ', this.newCharacter);
     // TODO: Need some sort of confirmation, maybe ask if they want to go to characters-vew or back to all-characters.
