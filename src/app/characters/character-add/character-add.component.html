@@ -146,3 +146,32 @@
 
 </div>
 <!-- Card -->
+
+
+<!-- <button type="button" mdbBtn color="primary" class="relative waves-light" (click)="showConfirmation()"
+  mdbWavesEffect>Launch
+  demo modal</button> -->
+
+<!-- Modal -->
+<div mdbModal #confirmationModal="mdbModal" class="modal fade" tabindex="-1" role="dialog"
+  aria-labelledby="myBasicModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close pull-right" aria-label="Close" (click)="confirmationModal.hide()">
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Are you sure?</h4>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to add this Toon to your roster?
+      </div>
+      <div class="modal-footer">
+        <button type="button" mdbBtn color="secondary" class="waves-light" aria-label="Close" (click)="onNoClick()"
+          mdbWavesEffect>No</button>
+        <button type="button" mdbBtn color="primary" class="relative waves-light" mdbWavesEffect
+          (click)="onYesClick()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>

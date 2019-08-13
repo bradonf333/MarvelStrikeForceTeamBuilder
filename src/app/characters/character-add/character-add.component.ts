@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ModalDirective } from 'angular-bootstrap-md';
 import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
 import { Gear, maxGearTier } from 'src/app/models/entities/Gear';
 import { BaseCharacterService } from 'src/app/services/base-character-service/base-character.service';
@@ -23,6 +24,12 @@ export class CharacterAddComponent implements OnInit {
   maxStarLevel = 7;
   charName: string;
   maxGearTier = maxGearTier;
+
+  @ViewChild('confirmationModal', { static: false }) public confirmation: ModalDirective;
+
+  public showConfirmation(): void {
+    this.confirmation.show();
+  }
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -101,9 +108,20 @@ export class CharacterAddComponent implements OnInit {
     this.newCharacter.gear.slot6 =
       this.gearSlot6.value == null ? false : this.gearSlot6.value;
 
+    this.showConfirmation();
+  }
+
+  onYesClick() {
     console.log('Updated Character: ', this.newCharacter);
-    // TODO: Need some sort of confirmation, maybe ask if they want to go to characters-vew or back to all-characters.
-    this.charService.add(this.newCharacter).then(res => {});
+    const toonExists = this.charService.doesToonExist(this.newCharacter.name);
+    if (!toonExists) {
+      // TODO: Need some sort of confirmation, maybe ask if they want to go to characters-vew or back to all-characters.
+      this.charService.add(this.newCharacter).then(res => {});
+    }
+  }
+
+  onNoClick() {
+    this.confirmation.hide();
   }
 
   get level() {
