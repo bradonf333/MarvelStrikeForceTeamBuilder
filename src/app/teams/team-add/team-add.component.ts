@@ -1,10 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'angular-bootstrap-md';
-import { BaseCharacterService } from 'src/app/services/base-character-service/base-character.service';
+import { Observable } from 'rxjs';
+import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
 import { CharacterService } from 'src/app/services/character-service/character.service';
-import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
   selector: 'app-team-add',
@@ -13,6 +12,8 @@ import { UserService } from 'src/app/services/user-service/user.service';
 })
 export class TeamAddComponent implements OnInit {
   newTeamForm: FormGroup;
+  characters$: Observable<CharacterEntity[]>;
+  availableCharacters: CharacterEntity[];
 
   @ViewChild('confirmationModal', { static: false }) public confirmation: ModalDirective;
 
@@ -20,21 +21,23 @@ export class TeamAddComponent implements OnInit {
     this.confirmation.show();
   }
 
-  constructor(
-    private actRoute: ActivatedRoute,
-    private router: Router,
-    private fb: FormBuilder,
-    private baseCharService: BaseCharacterService,
-    private charService: CharacterService,
-    private userService: UserService
-  ) {}
+  constructor(private characterService: CharacterService, private fb: FormBuilder) {
+    characterService.list().subscribe((characters: CharacterEntity[]) => {
+      this.availableCharacters = characters;
+    });
+  }
 
   ngOnInit() {
     this.newTeamForm = this.fb.group({
       teamName: ['', [Validators.minLength(2), Validators.maxLength(50)]],
       arenaMode: [''],
       blitzMode: [''],
-      raidMode: ['']
+      raidMode: [''],
+      slot1: [''],
+      slot2: [''],
+      slot3: [''],
+      slot4: [''],
+      slot5: ['']
     });
   }
 
@@ -57,5 +60,20 @@ export class TeamAddComponent implements OnInit {
   }
   get raidMode() {
     return this.newTeamForm.get('raidMode');
+  }
+  get slot1() {
+    return this.newTeamForm.get('slot1');
+  }
+  get slot2() {
+    return this.newTeamForm.get('slot2');
+  }
+  get slot3() {
+    return this.newTeamForm.get('slot3');
+  }
+  get slot4() {
+    return this.newTeamForm.get('slot4');
+  }
+  get slot5() {
+    return this.newTeamForm.get('slot5');
   }
 }

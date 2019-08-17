@@ -119,6 +119,7 @@ export class CharacterAddComponent implements OnInit {
     if (!toonExists) {
       // TODO: Need some sort of confirmation, maybe ask if they want to go to characters-vew or back to all-characters.
       this.charService.add(this.newCharacter).then(res => {});
+      this.confirmation.hide();
     }
   }
 

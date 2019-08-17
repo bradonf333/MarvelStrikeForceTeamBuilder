@@ -1,5 +1,5 @@
 <!-- Card -->
-<div class="card container">
+<div *ngIf="availableCharacters" class="card container">
 
   <div class="primary-color white-text">
     <h4 class="title text-center">Create new Team</h4>
@@ -58,10 +58,70 @@
             <mdb-checkbox class="mt-2" [formControl]="blitzMode"></mdb-checkbox>
           </div>
         </div>
-
         <!-- Grid column -->
       </div>
       <!-- Grid row -->
+
+      <!-- Character Slots -->
+      <div class="form-row">
+        <h5 class="form" id="gearSlots">Characters</h5>
+      </div>
+
+      <div class="form-row">
+        <!-- Slot 1 -->
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default1">Slot 1</span>
+          </div>
+          <select class="browser-default custom-select">
+            <option selected>Pick a Toon</option>
+            <option *ngFor="let character of availableCharacters" value={{character.id}}>{{character.name}}</option>
+          </select>
+        </div>
+        <!-- Slot 2 -->
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default1">Slot 2</span>
+          </div>
+          <select class="browser-default custom-select">
+            <option selected>Pick a Toon</option>
+            <option *ngFor="let character of availableCharacters" value={{character.id}}>{{character.name}}</option>
+          </select>
+        </div>
+        <!-- Slot 3 -->
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default1">Slot 3</span>
+          </div>
+          <select class="browser-default custom-select">
+            <option selected>Pick a Toon</option>
+            <option *ngFor="let character of availableCharacters" value={{character.id}}>{{character.name}}</option>
+          </select>
+        </div>
+        <!-- Slot 4 -->
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default1">Slot 4</span>
+          </div>
+          <select class="browser-default custom-select">
+            <option selected>Pick a Toon</option>
+            <option *ngFor="let character of availableCharacters" value={{character.id}}>{{character.name}}</option>
+          </select>
+        </div>
+        <!-- Slot 5 -->
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-default1">Slot 5</span>
+          </div>
+          <select class="browser-default custom-select">
+            <option selected>Pick a Toon</option>
+            <option *ngFor="let character of availableCharacters" value={{character.id}}>{{character.name}}</option>
+          </select>
+        </div>
+      </div>
+
+
+
 
       <button type="button" class="btn btn-primary btn-rounded waves-effect" type="submit"
         [disabled]="newTeamForm.invalid">Save</button>
