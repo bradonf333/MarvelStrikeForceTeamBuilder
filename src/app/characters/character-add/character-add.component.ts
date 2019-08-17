@@ -2,8 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ModalDirective } from 'angular-bootstrap-md';
-import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
+import { CharacterEntity, maxLevel } from 'src/app/models/entities/CharacterEntity';
 import { Gear, maxGearTier } from 'src/app/models/entities/Gear';
+import { maxRank } from 'src/app/models/ranks/YellowRank';
 import { BaseCharacterService } from 'src/app/services/base-character-service/base-character.service';
 import { CharacterService } from 'src/app/services/character-service/character.service';
 import { UserService } from 'src/app/services/user-service/user.service';
@@ -20,10 +21,10 @@ export class CharacterAddComponent implements OnInit {
   newCharacterForm: FormGroup;
   newCharacter: CharacterEntity;
   uid: string;
-  maxLevel = 70;
-  maxStarLevel = 7;
   charName: string;
+  // Used for the form values
   maxGearTier = maxGearTier;
+  maxStarLevel = maxRank;
 
   @ViewChild('confirmationModal', { static: false }) public confirmation: ModalDirective;
 
@@ -46,13 +47,13 @@ export class CharacterAddComponent implements OnInit {
     });
 
     this.newCharacterForm = this.fb.group({
-      level: ['', [Validators.min(2), Validators.max(this.maxLevel)]],
+      level: ['', [Validators.min(2), Validators.max(maxLevel)]],
       power: ['', [Validators.required]],
       redStars: ['', [Validators.required]],
       yellowStars: ['', [Validators.required]],
       gearTier: [
         '',
-        [Validators.required, Validators.min(1), Validators.max(this.maxGearTier)]
+        [Validators.required, Validators.min(1), Validators.max(maxGearTier)]
       ],
       gearSlot1: [''],
       gearSlot2: [''],
@@ -68,7 +69,7 @@ export class CharacterAddComponent implements OnInit {
      * If valid then get all the information for that object.
      * If undefined, then re-route to home page.
      */
-    if (this.characterId === null) {
+    if (this.characterId === null || this.characterId === 'undefined') {
       // If undefined, then re-route because it is an error.
       // TODO: Create an error page/component.
       this.router.navigate(['/welcome']);
@@ -77,12 +78,13 @@ export class CharacterAddComponent implements OnInit {
         // Load the base data for the character.
         this.newCharacter = character;
         this.charName = this.newCharacter.name;
-
-        // TODO: Still need to figure this out.
-
-        this.charService.doesToonExist(this.charName);
       });
     }
+  }
+
+  doesToonExist() {
+    const dup = this.charService.doesToonExist(this.charName);
+    console.log('Dup', dup);
   }
 
   updateAbility(abilityName: string, newLevel: number) {

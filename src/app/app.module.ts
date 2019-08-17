@@ -21,6 +21,7 @@ import { CharacterEditComponent } from './characters/character-edit/character-ed
 import { CharactersViewComponent } from './characters/characters-view/characters-view.component';
 import { NavBarComponent } from './layout/nav-bar/nav-bar.component';
 import { WelcomeComponent } from './layout/welcome/welcome.component';
+import { TeamAddComponent } from './teams/team-add/team-add.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { WelcomeComponent } from './layout/welcome/welcome.component';
     MyAccountComponent,
     AllCharactersComponent,
     CharacterEditComponent,
-    CharacterAddComponent
+    CharacterAddComponent,
+    TeamAddComponent
   ],
   imports: [
     BrowserModule,

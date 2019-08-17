@@ -1,3 +1,5 @@
+export const maxRank = 7;
+
 export class YellowRank {
   name = 'YellowStar';
   shardsToRankUp: number;

@@ -14,3 +14,5 @@ export class CharacterEntity extends BaseEntity {
   yellowStars: YellowRank;
   redStars: RedRank;
 }
+
+export const maxLevel = 70;

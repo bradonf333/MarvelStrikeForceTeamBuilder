@@ -64,7 +64,7 @@ export class CharacterService {
           if (doc.id !== null) {
             doesCharExist = true;
             console.log(doesCharExist);
-            console.log('DocId', doc.data());
+            // console.log('DocId', doc.data());
           }
         });
       });

@@ -25,7 +25,6 @@
           class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           My Characters<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Create New Character</a>
           <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/characters-view']">Manage Existing
             Characters</a>
           <div class="divider dropdown-divider"></div>
@@ -39,9 +38,8 @@
           class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           Teams<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown dropdown-primary" role="menu">
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Create new Team</a>
+          <a class="dropdown-item waves-light" mdbWavesEffect [routerLink]="['/team-add']">Create new Team</a>
           <a class="dropdown-item waves-light" mdbWavesEffect href="#">Manage Existing Teams</a>
-          <a class="dropdown-item waves-light" mdbWavesEffect href="#">Something else here</a>
           <div class="divider dropdown-divider"></div>
           <a class="dropdown-item waves-light" mdbWavesEffect (click)=seedCharacters()>Seed Character</a>
         </div>
