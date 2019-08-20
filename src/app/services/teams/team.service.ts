@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { config } from 'src/app/app.config';
 import { TeamEntity } from 'src/app/models/entities/Team';
 import { User } from 'src/app/models/entities/User';
@@ -11,10 +13,26 @@ export class TeamService {
   userTeamsCollection: AngularFirestoreCollection<TeamEntity>;
   currentUser: User;
   uid: string;
-  constructor(afs: AngularFirestore) {
-    const path = config.team_collection;
+
+  teamIds: string[] = [];
+
+  constructor(private afs: AngularFirestore) {
     this.currentUser = JSON.parse(localStorage.getItem('userData'));
-    // TODO: Need to see if this is working at all.
-    // TODO: Need to figure out the sub-query, teams > list of docs > search all the fields on these docs for userId
+    this.userTeamsCollection = this.afs.collection(config.team_collection, ref =>
+      ref.where('userId', '==', this.currentUser.uid)
+    );
+  }
+
+  list(): Observable<TeamEntity[]> {
+    return this.userTeamsCollection.snapshotChanges().pipe(
+      map(changes => {
+        return changes.map(a => {
+          const data = a.payload.doc.data();
+          data.id = a.payload.doc.id;
+          console.log(data);
+          return data;
+        });
+      })
+    );
   }
 }

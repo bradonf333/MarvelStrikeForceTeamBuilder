@@ -4,6 +4,7 @@ import { ModalDirective } from 'angular-bootstrap-md';
 import { Observable } from 'rxjs';
 import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
 import { CharacterService } from 'src/app/services/character-service/character.service';
+import { TeamService } from 'src/app/services/teams/team.service';
 
 @Component({
   selector: 'app-team-add',
@@ -21,10 +22,14 @@ export class TeamAddComponent implements OnInit {
     this.confirmation.show();
   }
 
-  constructor(private characterService: CharacterService, private fb: FormBuilder) {
-    characterService.list().subscribe((characters: CharacterEntity[]) => {
-      this.availableCharacters = characters;
-    });
+  constructor(
+    private characterService: CharacterService,
+    private fb: FormBuilder,
+    private teamService: TeamService
+  ) {
+    characterService.list().subscribe();
+    teamService.list().subscribe();
+    // EXAMPLE: characterService.list().subscribe((characters: CharacterEntity[]) => {this.availableCharacters = characters;});
   }
 
   ngOnInit() {
