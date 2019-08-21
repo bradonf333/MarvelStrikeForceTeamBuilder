@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { config } from 'src/app/app.config';
 import { TeamEntity } from 'src/app/models/entities/Team';
@@ -24,6 +24,7 @@ export class TeamService {
   }
 
   list(): Observable<TeamEntity[]> {
+    console.log('[TeamService] list');
     return this.userTeamsCollection.snapshotChanges().pipe(
       map(changes => {
         return changes.map(a => {
@@ -34,5 +35,21 @@ export class TeamService {
         });
       })
     );
+  }
+
+  add(team: TeamEntity): Promise<TeamEntity> {
+    const subject = new Subject<TeamEntity>();
+
+    console.log('[CharacterService] adding: ', team);
+    this.userTeamsCollection.add(team).then(ref => {
+      const newItem = {
+        id: ref.id,
+        ...(team as any) /* workaround until spreads work with generic types */
+      };
+      ref.set(newItem);
+      subject.next(newItem);
+    });
+
+    return subject.asObservable().toPromise();
   }
 }

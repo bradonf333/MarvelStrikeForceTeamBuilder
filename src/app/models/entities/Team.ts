@@ -1,7 +1,7 @@
+import { BaseEntity } from './BaseEntity';
 import { CharacterEntity } from './CharacterEntity';
 
-export class TeamEntity {
-  id: string;
+export class TeamEntity extends BaseEntity {
   name: string;
   userId: string;
   gameModes: string[];
