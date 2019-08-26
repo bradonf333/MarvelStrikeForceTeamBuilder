@@ -3,14 +3,14 @@ import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/fire
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { config } from 'src/app/app.config';
-import { TeamEntity } from 'src/app/models/entities/Team';
+import { Team } from 'src/app/models/entities/Team';
 import { User } from 'src/app/models/entities/User';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TeamService {
-  userTeamsCollection: AngularFirestoreCollection<TeamEntity>;
+  userTeamsCollection: AngularFirestoreCollection<Team>;
   currentUser: User;
   uid: string;
 
@@ -23,7 +23,7 @@ export class TeamService {
     );
   }
 
-  list(): Observable<TeamEntity[]> {
+  list(): Observable<Team[]> {
     console.log('[TeamService] list');
     return this.userTeamsCollection.snapshotChanges().pipe(
       map(changes => {
@@ -37,8 +37,8 @@ export class TeamService {
     );
   }
 
-  add(team: TeamEntity): Promise<TeamEntity> {
-    const subject = new Subject<TeamEntity>();
+  add(team: Team): Promise<Team> {
+    const subject = new Subject<Team>();
 
     console.log('[CharacterService] adding: ', team);
     this.userTeamsCollection.add(team).then(ref => {

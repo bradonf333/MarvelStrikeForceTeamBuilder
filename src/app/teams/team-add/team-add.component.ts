@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { Observable } from 'rxjs';
 import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
-import { TeamEntity } from 'src/app/models/entities/Team';
+import { Team } from 'src/app/models/entities/Team';
 import { CharacterService } from 'src/app/services/character-service/character.service';
-import { TeamService } from 'src/app/services/teams/team.service';
+import { TeamService } from 'src/app/services/team/team.service';
 import { UserService } from 'src/app/services/user-service/user.service';
 
 @Component({
@@ -15,9 +15,9 @@ import { UserService } from 'src/app/services/user-service/user.service';
 })
 export class TeamAddComponent implements OnInit {
   newTeamForm: FormGroup;
-  newTeam: TeamEntity;
+  newTeam: Team;
   characters$: Observable<CharacterEntity[]>;
-  availableCharacters: CharacterEntity[];
+  usersCharacters: CharacterEntity[];
   uid: string;
 
   @ViewChild('confirmationModal', { static: false }) public confirmation: ModalDirective;
@@ -34,7 +34,7 @@ export class TeamAddComponent implements OnInit {
   ) {
     // characterService.list().subscribe();
     characterService.list().subscribe((characters: CharacterEntity[]) => {
-      this.availableCharacters = characters;
+      this.usersCharacters = characters;
     });
     teamService.list().subscribe();
     this.uid = this.userService.uid;
@@ -52,21 +52,21 @@ export class TeamAddComponent implements OnInit {
       slot4: [''],
       slot5: ['']
     });
-
-    this.slot1.setValue('Pick A Toon');
   }
 
   onSubmit() {
-    this.newTeam = {
-      name: this.teamName.value,
-      userId: this.uid,
-      gameModes: this.getGameModes(),
-      character1: this.slot1.value,
-      character2: this.slot2.value,
-      character3: this.slot3.value,
-      character4: this.slot4.value,
-      character5: this.slot5.value
-    };
+    // TODO: Need to validate if this works.
+    this.newTeam = Object.assign({}, new Team());
+    this.newTeam.name = this.teamName.value;
+    this.newTeam.userId = this.uid;
+    this.newTeam.gameModes = this.getGameModes();
+    // TODO: Prevent Duplicate Toons.
+    this.newTeam.character1 = this.usersCharacters.find(x => x.id === this.slot1.value);
+    this.newTeam.character2 = this.usersCharacters.find(x => x.id === this.slot2.value);
+    this.newTeam.character3 = this.usersCharacters.find(x => x.id === this.slot3.value);
+    this.newTeam.character4 = this.usersCharacters.find(x => x.id === this.slot4.value);
+    this.newTeam.character5 = this.usersCharacters.find(x => x.id === this.slot5.value);
+    this.newTeam.calculatePower();
 
     this.showConfirmation();
   }
@@ -95,22 +95,6 @@ export class TeamAddComponent implements OnInit {
 
   onNoClick() {
     this.confirmation.hide();
-  }
-
-  updateAvailableChars(slotControl: AbstractControl) {
-    /*
-    TODO:
-      This finds the toons index and removes it from the available characters.
-      However, that also removes it from the entire list so it can no longer be an option,
-      even though they currently just selected it. Maybe need to create seperate arrays.
-    */
-    console.log(slotControl.value);
-    const toon = this.availableCharacters.find(i => i.id === slotControl.value);
-    const index = this.availableCharacters.findIndex(i => i.id === slotControl.value);
-    this.availableCharacters.splice(index, 1);
-    console.log('Toon', toon);
-    console.log('Index', index);
-    console.log(this.availableCharacters);
   }
 
   get teamName() {

@@ -73,9 +73,10 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default1">Slot 1</span>
           </div>
-          <select [formControl]="slot1" class="browser-default custom-select" (change)="updateAvailableChars(slot1)">
+          <select [formControl]="slot1" class="browser-default custom-select">
             <option selected disabled>Pick a Toon</option>
-            <option *ngFor="let character of availableCharacters" [value]=character.id>{{character.name}}</option>
+            <option *ngFor="let character of usersCharacters" [value]=character.id>
+              {{character.name}}</option>
           </select>
         </div>
         <!-- Slot 2 -->
@@ -83,9 +84,10 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default1">Slot 2</span>
           </div>
-          <select class="browser-default custom-select" [formControl]="slot2" (change)="updateAvailableChars(slot2)">
+          <select class="browser-default custom-select" [formControl]="slot2">
             <option selected disabled>Pick a Toon</option>
-            <option *ngFor="let character of availableCharacters" value={{character.id}}>{{character.name}}</option>
+            <option *ngFor="let character of usersCharacters" value={{character.id}}>
+              {{character.name}}</option>
           </select>
         </div>
         <!-- Slot 3 -->
@@ -93,9 +95,9 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default1">Slot 3</span>
           </div>
-          <select class="browser-default custom-select" [formControl]="slot3" (change)="updateAvailableChars(slot3)">
+          <select class="browser-default custom-select" [formControl]="slot3">
             <option selected disabled>Pick a Toon</option>
-            <option *ngFor="let character of availableCharacters" value={{character.id}}>{{character.name}}</option>
+            <option *ngFor="let character of usersCharacters" value={{character.id}}>{{character.name}}</option>
           </select>
         </div>
         <!-- Slot 4 -->
@@ -103,9 +105,9 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default1">Slot 4</span>
           </div>
-          <select class="browser-default custom-select" [formControl]="slot4" (change)="updateAvailableChars(slot4)">
+          <select class="browser-default custom-select" [formControl]="slot4">
             <option selected disabled>Pick a Toon</option>
-            <option *ngFor="let character of availableCharacters" value={{character.id}}>{{character.name}}</option>
+            <option *ngFor="let character of usersCharacters" value={{character.id}}>{{character.name}}</option>
           </select>
         </div>
         <!-- Slot 5 -->
@@ -113,9 +115,9 @@
           <div class="input-group-prepend">
             <span class="input-group-text" id="inputGroup-sizing-default1">Slot 5</span>
           </div>
-          <select class="browser-default custom-select" [formControl]="slot5" (change)="updateAvailableChars(slot5)">
+          <select class="browser-default custom-select" [formControl]="slot5">
             <option selected disabled>Pick a Toon</option>
-            <option *ngFor="let character of availableCharacters" value={{character.id}}>{{character.name}}</option>
+            <option *ngFor="let character of usersCharacters" value={{character.id}}>{{character.name}}</option>
           </select>
         </div>
       </div>
