@@ -51,6 +51,9 @@
     <ul class="navbar-nav ml-auto nav-flex-icons">
       <li class="nav-item avatar dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
+          <span *ngIf="!authService.isLoggedIn">
+            <mdb-icon fas icon="user"></mdb-icon>Profile<span class="caret"></span>
+          </span>
           <img *ngIf="authService.isLoggedIn && currentUser" src={{currentUser.photoURL}} alt=""
             class="img-fluid rounded-circle z-depth-0">
         </a>
