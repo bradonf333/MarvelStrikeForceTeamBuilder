@@ -13,6 +13,7 @@ export class CharacterEntity extends BaseEntity {
   traits: Trait[];
   yellowStars: YellowRank;
   redStars: RedRank;
+  photoURL?: string;
 }
 
 export const maxLevel = 70;

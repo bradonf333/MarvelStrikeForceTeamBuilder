@@ -70,7 +70,9 @@ export const BaseIronFist: CharacterEntity = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/3/35/IronFist.png/'
 };
 
 export const BaseJessicaJones = {
@@ -110,7 +112,9 @@ export const BaseJessicaJones = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/e/ed/JessicaJones.png/'
 };
 
 export const BaseDareDevil = {
@@ -157,7 +161,9 @@ export const BaseDareDevil = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/8/8f/Daredevil.png/'
 };
 
 export const BaseLukeCage = {
@@ -197,7 +203,9 @@ export const BaseLukeCage = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/a/aa/LukeCage.png/'
 };
 
 export const BaseRonan = {
@@ -237,7 +245,9 @@ export const BaseRonan = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/8/8b/Ronan.png/'
 };
 
 export const BaseReaper = {
@@ -277,7 +287,9 @@ export const BaseReaper = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/7/7a/KreeReaper.png/'
 };
 
 export const BaseOracle = {
@@ -317,7 +329,9 @@ export const BaseOracle = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/f/f0/KreeOracle.png/'
 };
 
 export const BaseNoble = {
@@ -357,7 +371,9 @@ export const BaseNoble = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/6/61/KreeNoble.png/'
 };
 
 export const BaseCyborg = {
@@ -397,7 +413,9 @@ export const BaseCyborg = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/1/1b/KreeCyborg.png/'
 };
 
 export const BaseRoyalGuard = {
@@ -437,7 +455,9 @@ export const BaseRoyalGuard = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/a/a7/KreeRoyalGuard.png/'
 };
 
 export const BaseSpiderMan = {
@@ -477,7 +497,9 @@ export const BaseSpiderMan = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/b/bc/SpiderMan.png/'
 };
 
 export const BasePunisher = {
@@ -517,5 +539,7 @@ export const BasePunisher = {
   gear: baseGear,
   power: 0,
   yellowStars: yellowRank,
-  redStars: redRank
+  redStars: redRank,
+  photoURL:
+    'https://vignette.wikia.nocookie.net/marvel-strike-force/images/b/bd/Punisher.png'
 };
