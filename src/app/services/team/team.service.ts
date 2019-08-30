@@ -40,7 +40,7 @@ export class TeamService {
   add(team: Team): Promise<Team> {
     const subject = new Subject<Team>();
 
-    console.log('[CharacterService] adding: ', team);
+    console.log('[TeamService] adding: ', team);
     this.userTeamsCollection.add(team).then(ref => {
       const newItem = {
         id: ref.id,
@@ -51,5 +51,17 @@ export class TeamService {
     });
 
     return subject.asObservable().toPromise();
+  }
+
+  delete(id: string): void {
+    console.log(`[TeamService] deleting item ${id}`);
+
+    const docRef = this.userTeamsCollection.doc<Team>(id).delete();
+    // docRef.delete();
+
+    // TODO: Original Code below, had to change to the above for testing.
+    // TODO: Once I can confirm the new code above works, I will remove this.
+    // const docRef = this.collection.doc<T>(id);
+    // docRef.delete();
   }
 }

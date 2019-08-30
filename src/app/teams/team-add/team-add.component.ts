@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ModalDirective } from 'angular-bootstrap-md';
 import { Observable } from 'rxjs';
 import { CharacterEntity } from 'src/app/models/entities/CharacterEntity';
-import { Team } from 'src/app/models/entities/Team';
+import { calculatePower, Team } from 'src/app/models/entities/Team';
 import { CharacterService } from 'src/app/services/character-service/character.service';
 import { TeamService } from 'src/app/services/team/team.service';
 import { UserService } from 'src/app/services/user-service/user.service';
@@ -42,20 +42,22 @@ export class TeamAddComponent implements OnInit {
 
   ngOnInit() {
     this.newTeamForm = this.fb.group({
-      teamName: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      teamName: [
+        '',
+        [Validators.required, Validators.minLength(2), Validators.maxLength(50)]
+      ],
       arenaMode: [''],
       blitzMode: [''],
       raidMode: [''],
-      slot1: [''],
-      slot2: [''],
-      slot3: [''],
-      slot4: [''],
-      slot5: ['']
+      slot1: ['', Validators.required],
+      slot2: ['', Validators.required],
+      slot3: ['', Validators.required],
+      slot4: ['', Validators.required],
+      slot5: ['', Validators.required]
     });
   }
 
   onSubmit() {
-    // TODO: Need to validate if this works.
     this.newTeam = Object.assign({}, new Team());
     this.newTeam.name = this.teamName.value;
     this.newTeam.userId = this.uid;
@@ -66,7 +68,8 @@ export class TeamAddComponent implements OnInit {
     this.newTeam.character3 = this.usersCharacters.find(x => x.id === this.slot3.value);
     this.newTeam.character4 = this.usersCharacters.find(x => x.id === this.slot4.value);
     this.newTeam.character5 = this.usersCharacters.find(x => x.id === this.slot5.value);
-    this.newTeam.calculatePower();
+    this.newTeam.totalPower = calculatePower(this.newTeam);
+    console.log(this.newTeam);
 
     this.showConfirmation();
   }

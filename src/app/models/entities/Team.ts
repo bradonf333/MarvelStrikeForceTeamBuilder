@@ -10,14 +10,15 @@ export class Team {
   character3: CharacterEntity;
   character4: CharacterEntity;
   character5: CharacterEntity;
-  totalPower?: number;
+  totalPower: number;
+}
 
-  calculatePower() {
-    this.totalPower =
-      this.character1.power +
-      this.character2.power +
-      this.character3.power +
-      this.character4.power +
-      this.character5.power;
-  }
+export function calculatePower(team: Team): number {
+  return (
+    team.character1.power +
+    team.character2.power +
+    team.character3.power +
+    team.character4.power +
+    team.character5.power
+  );
 }
